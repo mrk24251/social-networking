@@ -1,0 +1,92 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block title %}{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <link href="{% static "css/base.css" %}" rel="stylesheet">
+    </head>
+    {% if request.user.is_authenticated %}
+    <body>
+        <div id="header">
+            <span class="logo">Bookmarks</span>
+            <ul class="menu">
+                <li {% if section == "dashboard" %}class="selected"{% endif %}>
+                    <a href="{% url "dashboard" %}">My dashboard</a>
+                </li>
+                <li {% if section == "images" %}class="selected"{% endif %}>
+                    <a href="{% url "images:list" %}">Images</a>
+                </li>
+                <li {% if section == "people" %}class="selected"{% endif %}>
+                    <a href="{% url "user_list" %}">People</a>
+                </li>
+            </ul>
+
+            <span class="user">
+                Hello {{ request.user.first_name }},
+                <a href="{% url "logout" %}">Logout</a>
+            </span>
+        </div>
+
+        <div id="content">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">
+                            {{ message|safe }}
+                            <a href="#" class="close">x</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            {% block content %}
+            {% endblock %}
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js">
+        </script>
+        <script>
+            var csrftoken = Cookies.get('csrftoken');
+            function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+            $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+            }
+            });
+            $(document).ready(function(){
+                {% block domready %}
+                {% endblock %}
+            });
+        </script>
+    </body>
+    {% else %}
+    <body class="login_body">
+        <div class="container">
+            {% if messages %}
+                <ul class="messages">
+                    {% for message in messages %}
+                        <li class="{{ message.tags }}">
+                            {{ message|safe }}
+                            <a href="#" class="close">x</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+            {% block conten %}
+            {% endblock %}
+        </div>
+    </body>
+    {% endif %}
+</html>
