@@ -67,6 +67,7 @@ def register(request):
             new_user.set_password(
                 user_form.cleaned_data['password'])
             new_user.username=user_form.cleaned_data['username']
+            new_user.email = user_form.cleaned_data['email']
             # Save the User object
             new_user.save()
             Profile.objects.create(user=new_user)

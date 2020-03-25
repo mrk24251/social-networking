@@ -125,6 +125,18 @@ a:hover{
 .user_form_error{
     text-align:right;
 }
+.register_done_p{
+    text-align:center;
+    margin-top: 45vh;
+    font-size: 16px;
+
+}
+.reset_password{
+    font-family: Vazir , sans-serif !important;
+    font-size: 22px !important;
+    margin-bottom: 42px !important;
+}
+}
 p {
     line-height: 1.8;
 }
@@ -298,6 +310,14 @@ ul.messages li a.close {
 .login-form {
     float:left;
     width:52%;
+}
+@media (max-width: 450px){
+    .login-form {
+        width:95% !important;
+    }
+    .btn-dark{
+        font-size:11px !important;
+    }
 }
 
 /* social-auth */

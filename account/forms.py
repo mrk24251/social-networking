@@ -7,6 +7,8 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class UserRegistrationForm(forms.ModelForm):
+    email=forms.EmailField(max_length=65 ,
+                           widget=forms.EmailInput)
     username = forms.CharField(max_length=40)
     password = forms.CharField(label='password',
         widget=forms.PasswordInput)
@@ -15,7 +17,7 @@ class UserRegistrationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'email')
+        fields = ('first_name',)
 
     def clean_password2(self):
         cd = self.cleaned_data
@@ -34,6 +36,14 @@ class UserRegistrationForm(forms.ModelForm):
         if User.objects.filter(username=username).exists():
             raise forms.ValidationError("نام کاربری قبلا انتخاب شده است. لطفا نام کاربری دیگری انتخاب کنید")
         return username
+
+    def clean_email(self):
+        cd = self.cleaned_data
+        email=cd['email']
+
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError("این ایمیل قبلا استفاده شده است.")
+        return email
 
 class UserEditForm(forms.ModelForm):
     class Meta:

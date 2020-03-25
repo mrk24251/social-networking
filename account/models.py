@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from django.contrib.auth.models import User
 
+User._meta.get_field('email').__dict__['_unique'] = True
+
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
