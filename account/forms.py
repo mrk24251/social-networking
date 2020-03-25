@@ -7,19 +7,33 @@ class LoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class UserRegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password',
+    username = forms.CharField(max_length=40)
+    password = forms.CharField(label='password',
         widget=forms.PasswordInput)
     password2 = forms.CharField(label='Repeat password',
         widget=forms.PasswordInput)
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'email')
+        fields = ('first_name', 'email')
 
     def clean_password2(self):
         cd = self.cleaned_data
         if cd['password'] != cd['password2']:
-            raise forms.Validation
+            raise forms.ValidationError("پسورد های وارد شده با یکدیگر مغایرت دارند")
+
+    def clean_username(self):
+        cd = self.cleaned_data
+        username=cd['username']
+        # try:
+        #     user = User.objects.get(username=cd['username'])
+        # except User.DoesNotExist:
+        #     return username
+        # raise forms.ValidationError("نام کاربری قبلا انتخاب شده است. لطفا نام کاربری دیگری انتخاب کنید")
+
+        if User.objects.filter(username=username).exists():
+            raise forms.ValidationError("نام کاربری قبلا انتخاب شده است. لطفا نام کاربری دیگری انتخاب کنید")
+        return username
 
 class UserEditForm(forms.ModelForm):
     class Meta:

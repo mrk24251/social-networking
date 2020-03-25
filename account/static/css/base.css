@@ -122,6 +122,9 @@ a:hover{
     color: #fff;
     background-color: rgba(0,0,0,0.6);
 }
+.user_form_error{
+    text-align:right;
+}
 p {
     line-height: 1.8;
 }
