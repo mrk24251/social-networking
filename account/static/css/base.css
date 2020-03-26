@@ -20,6 +20,9 @@ body {
     direction:rtl;
     text-align:right;
 }
+button{
+    outline:none;
+}
 a:hover{
     text-decoration:none;
 }
@@ -118,7 +121,6 @@ a:hover{
 }
 .btn-dark:hover {
     font-family: 'Vazir', serif;
-    font-size: 15px !important;
     color: #fff;
     background-color: rgba(0,0,0,0.6);
 }
@@ -136,6 +138,30 @@ a:hover{
     font-size: 22px !important;
     margin-bottom: 42px !important;
 }
+.user-profile {
+    background: #f4f4f4;
+    padding: 0px 0px 20px 0px;
+}
+.user-profile .post-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 24px;
+    margin-top: 20px;
+}
+.user-profile .post-content .author-post {
+    width: 100%;
+    margin-top: -105px;
+    margin-bottom: 5px;
+    z-index: 1;
+    float: center !important;
+}
+.user-profile .post-content .author-post img {
+    width: 200px;
+    height: 200px;
+    border: 7px solid #fff;
 }
 p {
     line-height: 1.8;
@@ -210,14 +236,6 @@ ol {
     padding-top:4px;
 }
 
-#content {
-    padding:30px 100px;
-}
-
-/* forms */
-form {
-    overflow:auto;
-}
 
 form p {
     width:100%;
@@ -347,7 +365,103 @@ ul.messages li a.close {
 .social li.google:hover { background:#de1000; }
 
 /* images */
-
+.profilebox1{
+    background: linear-gradient( rgba(34,34,34,0.45), rgba(34,34,34,0.45)), url('../img/be7.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: #fff;
+    height: 250px;
+    width: 100%;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+    margin-bottom: 0px !important;
+    padding: 0px !important;
+}
+.profilebox2{
+    background: linear-gradient( rgba(34,34,34,0.45), rgba(34,34,34,0.45)), url('../img/be2.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: #fff;
+    height: 250px;
+    width: 100%;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+    margin-bottom: 0px !important;
+    padding: 0px !important;
+}
+.profilebox3{
+    background: linear-gradient( rgba(34,34,34,0.45), rgba(34,34,34,0.45)), url('../img/be3.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: #fff;
+    height: 250px;
+    width: 100%;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+    margin-bottom: 0px !important;
+    padding: 0px !important;
+}
+.profilebox4{
+    background: linear-gradient( rgba(34,34,34,0.45), rgba(34,34,34,0.45)), url('../img/be5.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: #fff;
+    height: 250px;
+    width: 100%;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+    margin-bottom: 0px !important;
+    padding: 0px !important;
+}
+.profilebox-large{
+    background: linear-gradient( rgba(34,34,34,0.45), rgba(34,34,34,0.45)), url('../img/be1.jpg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    color: #fff;
+    height: 500px;
+    width: 100%;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+    margin-bottom: 0px !important;
+    padding: 0px !important;
+}
+.profile .row .col-lg-3, .profile .row .col-lg-6 {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.profile .row {
+    padding: 0px !important;
+    margin: 0px !important;
+}
+.camera_div{
+    position:relative;
+    bottom: 65px;
+    left: 67px;
+}
+.camera_div_button{
+    border-radius:50%;
+}
+.camera_icon{
+    font-size: 25px;
+    padding: 16px 16px;
+    background-color: #ddd;
+    border-radius: 100%;
+    cursor:pointer;
+}
+.camera_icon:hover{
+    background-color: #ccc;
+}
+}
 .image-preview, .image-detail {
     max-width:300px;
     float:left;

@@ -2,13 +2,60 @@
 
 {% block title %}Edit your account{% endblock %}
 
-{% block conten %}
-<h1>Edit your account</h1>
-<p>You can edit your account using the following form:</p>
+{% block content %}
+<section class="profile">
+	<div class="row">
+
+	   <div class="col-lg-3">
+		 <div class="profilebox1 hidden-xs hidden-sm">
+		 </div>
+		 <div class="profilebox2 hidden-xs hidden-sm">
+		 </div>
+	   </div>
+	   <div class="col-lg-6">
+		 <div class="profilebox-large hidden-xs hidden-sm">
+		 </div>
+	   </div>
+	   <div class="col-lg-3">
+		 <div class="profilebox3 hidden-xs hidden-sm">
+		 </div>
+		 <div class="profilebox4">
+		 </div>
+	   </div>
+
+	</div>
+</section>
 <form action="." method="post" enctype="multipart/form-data">
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" value="Save changes"></p>
+	<section class="user-profile">
+	  <div class="container-fluid">
+	   <div class="row">
+		<div class="col-lg-12">
+		   <div class="post-content">
+			<div class="author-post text-center">
+			 	<a href="{{profile_form.instance.photo.url}}"><img class="img-fluid img-circle" src="{{profile_form.instance.photo.url}}" alt="Image"></a>
+				<div class="camera_div">
+					<div class="camera_div_button">
+						<i class="fas fa-camera camera_icon"></i>
+					</div>
+				</div>
+				<input type="file" name="photo" style="display:none" id="ggg" accept="image/*" id="id_photo">
+			</div><!-- /author -->
+		   </div><!-- /.post-content -->
+		</div><!-- /col-sm-12 -->
+
+	   </div><!--/ row-->
+	  </div><!--/ container -->
+	</section>
+	{% csrf_token %}
+    <p><input id="profile_button" type="submit" value="Save changes"></p>
 </form>
+
+<!--<h1>Edit your account</h1>-->
+<!--<p>You can edit your account using the following form:</p>-->
+<!--<form action="." method="post" enctype="multipart/form-data">-->
+<!--    {{ user_form.as_p }}-->
+<!--    {{ profile_form.as_p }}-->
+<!--    {% csrf_token %}-->
+<!--    <p><input type="submit" value="Save changes"></p>-->
+<!--</form>-->
 {% endblock %}
