@@ -32,7 +32,11 @@
 		<div class="col-lg-12">
 		   <div class="post-content">
 			<div class="author-post text-center">
-			 	<a href="{{profile_form.instance.photo.url}}"><img class="img-fluid img-circle" src="{{profile_form.instance.photo.url}}" alt="Image"></a>
+				{% if profile_form.instance.photo %}
+			 		<a href="{{profile_form.instance.photo.url}}"><img class="img-fluid img-circle" src="{{profile_form.instance.photo.url}}" alt="Image"></a>
+				{% else %}
+					<a href="/static/img/person.jpg"><img class="img-fluid img-circle" src="/static/img/person.jpg" alt="Image"></a>
+				{% endif %}
 				<div class="camera_div">
 					<div class="camera_div_button">
 						<i class="fas fa-camera camera_icon"></i>
@@ -52,10 +56,10 @@
 
 <!--<h1>Edit your account</h1>-->
 <!--<p>You can edit your account using the following form:</p>-->
-<!--<form action="." method="post" enctype="multipart/form-data">-->
-<!--    {{ user_form.as_p }}-->
-<!--    {{ profile_form.as_p }}-->
-<!--    {% csrf_token %}-->
-<!--    <p><input type="submit" value="Save changes"></p>-->
-<!--</form>-->
+<form action="." method="post" enctype="multipart/form-data">
+    {{ user_form.as_p }}
+    {{ profile_form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Save changes"></p>
+</form>
 {% endblock %}
