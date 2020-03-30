@@ -9,7 +9,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://kit.fontawesome.com/59422bdd8a.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <script src="{%static "jquery/blog.js" %}"></script>
         <link href="{% static "css/base.css" %}" rel="stylesheet">
@@ -62,10 +61,10 @@
             return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
             }
             $.ajaxSetup({
-            beforeSend: function(xhr, settings) {
-            if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
-            xhr.setRequestHeader("X-CSRFToken", csrftoken);
-            }
+                beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                }
             }
             });
             $(document).ready(function(){

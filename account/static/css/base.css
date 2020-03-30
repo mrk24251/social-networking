@@ -733,3 +733,114 @@ img.user-detail {
 .pull-right {
     float: right!important;
 }
+
+.followers {
+    background: #f4f4f4;
+    padding: 20px 0px 20px 0px;
+}
+.followers-box {
+    float: right;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 20px;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+}
+.full-width {
+    width: 100%;
+}
+.followers-box .followers-list {
+    float: right;
+    width: 100%;
+    padding: 17px 0 10px 0;
+}
+.followers-box .followers-body {
+    float: right;
+    width: 100%;
+    padding: 10px 20px 0px 20px;
+    margin-top: 10px;
+    border-bottom: 2px solid #f4f4f4;
+}
+.followers-box .followers-body img {
+    width: 37px;
+    height: 37px;
+    float: right;
+    padding: 2px;
+    border: 2px solid #f4f4f4;
+}
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+.img-circle {
+    border-radius: 50%;
+}
+.followers-box .name-box {
+    float: right;
+    padding-left: 10px;
+    position: relative;
+    top: -12px;
+    padding-top: 0px !important;
+}
+.followers-box .name-box h4 {
+    color: #88898a;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+.followers-box .name-box span {
+    font-size: 14px;
+    color: #aaa;
+}
+.followers-base ul {
+    font-size: 0px;
+    text-align: center;
+}
+.list-group {
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+.followers-box .followers-body .list-group .list-group-item {
+    font-size: .8125em;
+    margin: 0;
+    padding: 5px 10px;
+    color: #607188;
+    background-color: transparent;
+    overflow: hidden;
+    border: 0;
+    border-radius: 0;
+}
+.followers-base li {
+    list-style: none;
+    display: inline-block;
+}
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+.followers-box .followers-body .list-group-item img {
+    margin-left: -13px;
+    border: 2px solid #fff;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.1) 1px 1px rgba(0,0,0,.1);
+    -khtml-box-shadow: 0 5px 10px rgba(0,0,0,.1) 1px 1px rgba(0,0,0,.1);
+    -moz-box-shadow: 0 5px 10px rgba(0,0,0,.1) 1px 1px rgba(0,0,0,.1);
+    -ms-box-shadow: 0 5px 10px rgba(0,0,0,.1) 1px 1px rgba(0,0,0,.1);
+    -o-box-shadow: 0 5px 10px rgba(0,0,0,.1) 1px 1px rgba(0,0,0,.1);
+    box-shadow: 0 5px 10px rgba(0,0,0,.1) 1px 1px rgba(0,0,0,.1);
+    max-width: 40px !important;
+}
+.followers-box .followers-body img {
+    width: 37px;
+    height: 37px;
+    float: right;
+    padding: 2px;
+    border: 2px solid #f4f4f4;
+    margin-left: 8px;
+}

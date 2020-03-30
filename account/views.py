@@ -169,3 +169,11 @@ def user_follow(request):
         except User.DoesNotExist:
             return JsonResponse({'status':'ko'})
     return JsonResponse({'status':'ko'})
+
+@login_required
+def user_follower(request):
+    user = request.user
+    return render(request,
+        'account/follow/follower.html',
+        {'section': 'profile',
+        'user': user})
