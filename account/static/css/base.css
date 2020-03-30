@@ -16,7 +16,7 @@
 body {
     margin:0;
     padding:0;
-    font-family:Vazir, sans-serif;
+    font-family:'Vazir', sans-serif;
     direction:rtl;
     text-align:right;
 }
@@ -33,20 +33,26 @@ a:hover{
     height: 100%;
     color:#fff;
 }
-@media (min-width: 1200px){
-    .container {
-        width: 1170px;
+@media screen and (min-width: 768px) and (max-width: 992px){
+    .container1 {
+        width: 750px;
     }
 }
-@media (min-width: 992px){
-    .container {
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+    .container1 {
         width: 970px;
     }
 }
-@media (min-width: 768px){
-    .container {
-        width: 750px;
+@media screen and (min-width: 1200px){
+    .container1 {
+        width: 1170px;
     }
+}
+.container1 {
+        padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
 .container {
     padding-right: 15px;
@@ -134,7 +140,7 @@ a:hover{
 
 }
 .reset_password{
-    font-family: Vazir , sans-serif !important;
+    font-family: 'Vazir' , sans-serif !important;
     font-size: 22px !important;
     margin-bottom: 42px !important;
 }
@@ -256,6 +262,25 @@ input, textarea {
     border:0;
     padding:6px 10px;
     font-size:14px;
+    outline:none;
+}
+small{
+    display: inline-block;
+}
+.profile_bio{
+    text-align:right;
+    width: 100%;
+    background-color: #fff;
+    resize: none;
+    overflow: hidden;
+    height: 30px;
+    margin-top:-10px;
+}
+.content-box input{
+    background-color: #fff;
+    font-size: 25px;
+    height:30px;
+    margin-bottom:4px;
 }
 input[type=submit], a.button {
     font-weight:bold;
@@ -267,7 +292,7 @@ input[type=submit], a.button {
     text-transform:uppercase;
     width: 100%;
     border-radius:3px;
-    font-family:Vazir, sans-serif;
+    font-family:'Vazir', sans-serif;
     margin-bottom: 25px;
 }
 input[type=submit]:hover, a.button:hover{
@@ -461,6 +486,57 @@ ul.messages li a.close {
 .camera_icon:hover{
     background-color: #ccc;
 }
+.details {
+    background: #f4f4f4;
+    padding: 0px 0px 20px 0px;
+}
+@media (min-width: 992px){
+    .container {
+    width: 970px;
+    }
+}
+@media (min-width: 768px){
+    .container {
+        width: 750px;
+    }
+}
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.details .details-box {
+    background: #fff;
+    padding: 15px;
+}
+.details .content-box h4 {
+    font-family: 'Vazir', serif;
+    font-size: 32px;
+    color: #88898a;
+    direction: rtl;
+    text-align: right;
+    display: inline-block;
+    margin-bottom:0px;
+}
+.details .content-box i {
+    font-size: 15px !important;
+    background: #0fc19e;
+    color: #fff !important;
+    border-radius: 50% !important;
+    padding: 4px;
+}
+.details .content-box p {
+    font-size: 15px;
+    color: #848484;
+    display: inline-flex;
+}
+.details .content-box p span.hashtag {
+    color: #0fc19e !important;
+}
+.details .content-box small span {
+    font-size: 15px;
+    color: #aaa;
 }
 .image-preview, .image-detail {
     max-width:300px;
@@ -542,4 +618,71 @@ img.user-detail {
 .action .date {
     font-style:italic;
     color:#ccc;
+}
+.email_input{
+    font-size:11px !important;
+    margin-top:-18px;
+}
+.menu-category1 {
+    background: #fff;
+    padding: 15px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.menu {
+    padding-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+.menu-category1 li {
+    font-family: 'Vazir', serif;
+    display: inline-block;
+    padding: 2px 5px;
+    margin: 3px 15px;
+}
+.menu-category1 ul li input {
+    font-family: 'Vazir', serif;
+    font-size: 16px;
+    color: #848484;
+}
+.menu-category1 li span {
+    background-color: #0fc19e;
+    padding: 3px;
+    border-radius: 50%;
+    color: #fff;
+}
+.home-menu {
+    background-color: #f4f4f4;
+    padding: 0px 0px 10px 0px;
+}
+.kafe-btn-mint {
+    font-family: 'Vazir', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 13px 31px;
+    color: #fff !important;
+    background: #0fc19e;
+    letter-spacing: 1px;
+}
+.kafe-btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    line-height: 1.4;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.save{
+    width:auto !important;
+    font-size:10px !important;
 }

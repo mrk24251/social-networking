@@ -7,6 +7,7 @@ User._meta.get_field('email').__dict__['_unique'] = True
 class Profile(models.Model):
     user = models.OneToOneField(settings.AUTH_USER_MODEL,on_delete=models.CASCADE)
     date_of_birth = models.DateField(blank=True, null=True)
+    bio = models.TextField(blank=True,default="من حال نداشتم این قسمت رو پر کنم.")
     photo = models.ImageField(upload_to='users/%Y/%m/%d/',blank=True,null=True)
 
     def __str__(self):

@@ -107,7 +107,8 @@ def edit(request):
     return render(request,
     'account/edit.html',
     {'user_form': user_form,
-    'profile_form': profile_form})
+    'profile_form': profile_form,
+     'user': request.user})
 
 @login_required
 def user_list(request):

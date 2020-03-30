@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $(".camera_div_button").on('click',function(){
+    $(".camera_icon").on('click',function(){
         console.log("ggg");
         $("#ggg").click();
     });
