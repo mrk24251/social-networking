@@ -281,6 +281,7 @@ small{
     font-size: 25px;
     height:30px;
     margin-bottom:4px;
+    width: 250px;
 }
 input[type=submit], a.button {
     font-weight:bold;
@@ -622,6 +623,8 @@ img.user-detail {
 .email_input{
     font-size:11px !important;
     margin-top:-18px;
+    direction:ltr;
+    text-align:right;
 }
 .menu-category1 {
     background: #fff;
@@ -685,4 +688,10 @@ img.user-detail {
 .save{
     width:auto !important;
     font-size:10px !important;
+}
+#details-box_div{
+    float:right
+}
+#profile_button{
+    margin-bottom:0px;
 }
