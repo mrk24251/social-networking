@@ -1,0 +1,41 @@
+{% load thumbnail %}
+
+<section class="newsfeed">
+	  <div class="container1">
+          <div class="row">
+            {% for image in images %}
+               <a href="{{ image.get_absolute_url }}">
+                {% thumbnail image.image "300x300" crop="100%" as im %}
+                    <div class="col-lg-4">
+                     <a href='{{ image.get_absolute_url }}' data-toggle="modal">
+                     <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
+                              background-size: cover;
+                              background-position: center center;
+                              -webkit-background-size: cover;
+                              -moz-background-size: cover;
+                              -o-background-size: cover;">
+                      <div class="explore-top">
+
+                          {% with total_likes=image.users_like.count %}
+                          <div class="explore-like"><i class="fa fa-heart"></i> <span>{{ total_likes }}</span></div>
+                          {% endwith %}
+
+                       <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+                      </div>
+                     </div>
+                     </a>
+                    </div><!--/ col-lg-4 -->
+                {% endthumbnail %}
+                </a>
+            {% endfor %}
+	   </div>
+	  </div>
+</section>
+<!--<div>-->
+
+<!--    <div class="info">-->
+<!--        <a href="{{ image.get_absolute_url }}" class="title">-->
+<!--            {{ image.title }}-->
+<!--        </a>-->
+<!--    </div>-->
+<!--</div>-->

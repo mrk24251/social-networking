@@ -12,6 +12,7 @@ from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
 from .models import Contact
 from actions.utils import create_action
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from actions.models import Action
 
 def user_login(request):
@@ -103,12 +104,31 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(
             instance=request.user.profile)
-
+        images = request.user.images_created.all()
+        paginator = Paginator(images, 9)
+        page = request.GET.get('page')
+        try:
+            images = paginator.page(page)
+        except PageNotAnInteger:
+            # If page is not an integer deliver the first page
+            images = paginator.page(1)
+        except EmptyPage:
+            if request.is_ajax():
+                # If the request is AJAX and the page is out of range
+                # return an empty page
+                return HttpResponse('')
+                # If page is out of range deliver last page of results
+            images = paginator.page(paginator.num_pages)
+        if request.is_ajax():
+            return render(request,
+                          'account/edit_ajax.html',
+                          {'section': 'profile', 'images': images})
     return render(request,
     'account/edit.html',
     {'user_form': user_form,
     'profile_form': profile_form,
-     'user': request.user})
+     'user': request.user,
+     'images': images})
 
 @login_required
 def user_list(request):

@@ -93,21 +93,17 @@
 		</div>
 	</div>
 </section>
-    {% for image in user.images_created.all %}
-            {% thumbnail image "180x180" crop="100%" as im %}
-        	<a href="{{ user.get_absolute_url }}">
-                <img src="{{ im.url }}">
-			</a>
-            {% endthumbnail %}
-	{% endfor %}
-<!--<h1>Edit your account</h1>-->
-<!--<p>You can edit your account using the following form:</p>-->
-<form action="." method="post" enctype="multipart/form-data">
-    {{ user_form.as_p }}
-    {{ profile_form.as_p }}
-    {% csrf_token %}
-    <p><input type="submit" value="Save changes"></p>
-</form>
+<!--    {% for image in user.images_created.all %}-->
+<!--            {% thumbnail image.image "180x180" crop="100%" as im %}-->
+<!--        	<a href="{{ image.get_absolute_url }}">-->
+<!--                <img src="{{ im.url }}">-->
+<!--			</a>-->
+<!--            {% endthumbnail %}-->
+<!--	{% endfor %}-->
+
+<div id="image-list">
+	{% include "account/edit_ajax.html" %}
+</div>
 {% endblock %}
 
 {% block domjs %}
@@ -115,4 +111,25 @@
 		element.style.height = "0px";
 		element.style.height = (element.scrollHeight)+"px";
 	}
+{% endblock %}
+{% block domready %}
+    var page = 1;
+    var empty_page = false;
+    var block_request = false;
+    $(window).scroll(function() {
+        var margin = $(document).height() - $(window).height() - 200;
+        if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+            block_request = true;
+            page += 1;
+            $.get('?page=' + page, function(data) {
+                if(data == '') {
+                    empty_page = true;
+                }
+                else {
+                    block_request = false;
+                    $('#image-list').append(data);
+                }
+            });
+        }
+    });
 {% endblock %}
