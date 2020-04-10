@@ -19,6 +19,7 @@ body {
     font-family:'Vazir', sans-serif;
     direction:rtl;
     text-align:right;
+    background-color: #f4f4f4;
 }
 button{
     outline:none;

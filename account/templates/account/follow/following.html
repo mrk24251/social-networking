@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block title %} following{% endblock %}
+
+{% block content %}
+<section class="followers">
+    <div class="container-fluid">
+    <div class="row">
+
+    <div class="col-lg-8 col-lg-offset-2">
+
+     <div class="followers-box full-width">
+        <div class="followers-list" id="followers-list">
+            {% include "account/follow/following_ajax.html" %}
+        </div><!--suggestions-list end-->
+    </div>
+
+    </div>
+
+    </div><!--/ row-->
+    </div><!--/ container -->
+    </section>
+
+{% endblock %}
+
+{% block domready %}
+    $('a.follow').click(function(e){
+        var ddd=$(this);
+        $.post('{% url "user_follow" %}',
+        {
+            id: $(this).data('id'),
+            action: $(this).data('action')
+        },
+        function(data){
+            if (data['status'] == 'ok') {
+                var previous_action = ddd.data('action');
+                // toggle data-action
+                $(ddd).data('action',
+                    previous_action == 'follow' ? 'unfollow' : 'follow');
+                // toggle link text
+                ddd.text(
+                    previous_action == 'follow' ? 'Unfollow' : 'Follow');
+                // update total followers
+                var previous_followers = parseInt($('span.count .total').text());
+                $('span.count .total').text(previous_action == 'follow' ?
+                    previous_followers + 1 : previous_followers - 1);
+            }
+        }
+    );
+});
+var page = 1;
+var empty_page = false;
+var block_request = false;
+$(window).scroll(function() {
+    var margin = $(document).height() - $(window).height() - 200;
+    if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+        block_request = true;
+        page += 1;
+        $.get('?page=' + page, function(data) {
+            if(data == '') {
+                empty_page = true;
+            }
+            else {
+                block_request = false;
+                $('#followers-list').append(data);
+            }
+        });
+    }
+});
+{% endblock %}

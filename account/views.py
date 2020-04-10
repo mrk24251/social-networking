@@ -175,7 +175,7 @@ def user_follow(request):
 def user_follower(request):
     user = request.user
     user_follower = user.followers.all()
-    user_followers = user_follower.annotate(follow_user=Count('followers')).order_by('-followers')
+    user_followers = user_follower.annotate(follow_user=Count('followers')).order_by('-follow_user')
     paginator = Paginator(user_followers, 12)
     page = request.GET.get('page')
     try:
@@ -199,3 +199,33 @@ def user_follower(request):
         {'section': 'profile',
         'user': user,
          'user_followers':user_followers})
+
+@login_required
+def user_following(request):
+    user = request.user
+    user_followin = user.following.all()
+    user_following = user_followin.annotate(follow_user=Count('following')).order_by('-follow_user')
+    paginator = Paginator(user_following, 12)
+    page = request.GET.get('page')
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        images = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            # return an empty page
+            return HttpResponse('')
+            # If page is out of range deliver last page of results
+        images = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return render(request,
+                      'account/follow/following_ajax.html',
+                      {'section': 'profile', 'user_following': images})
+    return render(request,
+        'account/follow/following.html',
+        {'section': 'profile',
+        'user': user,
+         'user_following':user_following})
+
