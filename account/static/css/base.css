@@ -556,7 +556,7 @@ ul.messages li a.close {
     padding:10px 20px;
     margin:20px 10px 0;
 }
-a.like, a.follow { float:right; margin-top:-8px; }
+a.like, a.follow { float:left; margin-top:-8px; }
 
 #image-list { overflow:auto; }
 #image-list .image {
@@ -685,6 +685,15 @@ img.user-detail {
     border: 1px solid transparent;
     border-radius: 4px;
 }
+.kafe-btn-mint-small {
+    font-size: 12px;
+    padding: 4px;
+    color: #ffffff !important;
+    background: #05cb95;
+}
+.ali{
+    text-align:right;
+}
 .save{
     width:auto !important;
     font-size:10px !important;
@@ -798,6 +807,10 @@ img.user-detail {
 .followers-base ul {
     font-size: 0px;
     text-align: center;
+}
+.follow-button:hover{
+    background: #0fc17a;
+    cursor:pointer;
 }
 .list-group {
     padding-left: 0;

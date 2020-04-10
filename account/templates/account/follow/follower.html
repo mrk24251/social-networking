@@ -11,46 +11,8 @@
     <div class="col-lg-8 col-lg-offset-2">
 
      <div class="followers-box full-width">
-        <div class="followers-list">
-            {% for user in user.followers.all %}
-                <div class="followers-body">
-                 <img class="img-responsive img-circle" src="{{user.profile.photo.url}}" alt="">
-                 <div class="name-box">
-                  <h4>{{user.first_name}}</h4>
-                  <span>@grace</span>
-                  <div class="followers-base">
-                   <ul class="list-group">
-                    <li class="list-group-item full-width">
-                     <div class="pull-left" style="margin-right: 20px;">
-                      <img src="assets/img/users/1.jpg" alt="" class="img-circle max-w-40 ">
-                      <img src="assets/img/users/2.jpg" alt="" class="img-circle max-w-40 ">
-                      <img src="assets/img/users/3.jpg" alt="" class="img-circle max-w-40 ">
-                      <img src="assets/img/users/4.jpg" alt="" class="img-circle max-w-40 ">
-                      <button class="btn btn-add-gray">
-                       <i class="fa fa-plus"></i>
-                      </button>
-                      <span> 14,000 Followers </span>
-                     </div><!--/ pull-left -->
-                    </li>
-                    <li class="list-group-item full-width">
-                     <div class="pull-left">
-                      <img src="assets/img/users/5.jpg" alt="" class="img-circle max-w-40 ">
-                      <img src="assets/img/users/6.jpg" alt="" class="img-circle max-w-40 ">
-                      <img src="assets/img/users/7.jpg" alt="" class="img-circle max-w-40 ">
-                      <img src="assets/img/users/8.jpg" alt="" class="img-circle max-w-40 ">
-                      <button class="btn btn-add-gray">
-                       <i class="fa fa-plus"></i>
-                      </button>
-                      <span> 14,000 Following </span>
-                     </div><!--/ pull-right -->
-                    </li><!--/ list-group-item -->
-                   </ul>
-                  </div><!--/ followers-base -->
-                 </div><!--/ name-box -->
-                 <span><a href="" class="kafe-btn kafe-btn-mint-small"> Follow</a></span>
-                </div><!--/ followers-body -->
-            {% endfor %}
-
+        <div class="followers-list" id="followers-list">
+            {% include "account/follow/follower_ajax.html" %}
         </div><!--suggestions-list end-->
     </div>
 
@@ -59,6 +21,51 @@
     </div><!--/ row-->
     </div><!--/ container -->
     </section>
-<span>{{user.profile.photo}}</span>
 
+{% endblock %}
+
+{% block domready %}
+    $('a.follow').click(function(e){
+        var ddd=$(this);
+        $.post('{% url "user_follow" %}',
+        {
+            id: $(this).data('id'),
+            action: $(this).data('action')
+        },
+        function(data){
+            if (data['status'] == 'ok') {
+                var previous_action = ddd.data('action');
+                // toggle data-action
+                $(ddd).data('action',
+                    previous_action == 'follow' ? 'unfollow' : 'follow');
+                // toggle link text
+                ddd.text(
+                    previous_action == 'follow' ? 'Unfollow' : 'Follow');
+                // update total followers
+                var previous_followers = parseInt($('span.count .total').text());
+                $('span.count .total').text(previous_action == 'follow' ?
+                    previous_followers + 1 : previous_followers - 1);
+            }
+        }
+    );
+});
+var page = 1;
+var empty_page = false;
+var block_request = false;
+$(window).scroll(function() {
+    var margin = $(document).height() - $(window).height() - 200;
+    if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+        block_request = true;
+        page += 1;
+        $.get('?page=' + page, function(data) {
+            if(data == '') {
+                empty_page = true;
+            }
+            else {
+                block_request = false;
+                $('#followers-list').append(data);
+            }
+        });
+    }
+});
 {% endblock %}

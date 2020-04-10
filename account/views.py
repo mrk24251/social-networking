@@ -14,6 +14,7 @@ from .models import Contact
 from actions.utils import create_action
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from actions.models import Action
+from django.db.models import Count
 
 def user_login(request):
     if request.method == 'POST':
@@ -173,7 +174,28 @@ def user_follow(request):
 @login_required
 def user_follower(request):
     user = request.user
+    user_follower = user.followers.all()
+    user_followers = user_follower.annotate(follow_user=Count('followers')).order_by('-followers')
+    paginator = Paginator(user_followers, 12)
+    page = request.GET.get('page')
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        images = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            # return an empty page
+            return HttpResponse('')
+            # If page is out of range deliver last page of results
+        images = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return render(request,
+                      'account/follow/follower_ajax.html',
+                      {'section': 'profile', 'user_followers': images})
     return render(request,
         'account/follow/follower.html',
         {'section': 'profile',
-        'user': user})
+        'user': user,
+         'user_followers':user_followers})
