@@ -635,6 +635,7 @@ img.user-detail {
     justify-content: center;
     align-items: center;
     text-align: center;
+    width:100%;
 }
 .menu {
     padding-left: 0;
@@ -662,7 +663,7 @@ img.user-detail {
 }
 .home-menu {
     background-color: #f4f4f4;
-    padding: 0px 0px 10px 0px;
+    padding: 0px 0px 50px 0px;
 }
 .kafe-btn-mint {
     font-family: 'Vazir', sans-serif;
@@ -707,7 +708,7 @@ img.user-detail {
 }
 .newsfeed {
     background: #f4f4f4;
-    padding: 40px 0px;
+    padding: 0px 0px;
 }
 .explorebox {
     color: #fff;

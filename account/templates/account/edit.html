@@ -104,6 +104,127 @@
 <div id="image-list">
 	{% include "account/edit_ajax.html" %}
 </div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--<div id="myModal" class="modal fade in" style="display: block; padding-right: 15px;"  aria-hidden="true">-->
+<!--  <div class="modal-dialog">-->
+<!--   <div class="modal-content">-->
+<!--	<div class="modal-body">-->
+
+<!--	 <div class="row">-->
+
+<!--	  <div class="col-md-8 modal-image">-->
+<!--	   <img class="img-responsive" src="assets/img/posts/15.jpg" alt="Image">-->
+<!--	  </div>&lt;!&ndash;/ col-md-8 &ndash;&gt;-->
+<!--	  <div class="col-md-4 modal-meta">-->
+<!--	   <div class="modal-meta-top">-->
+<!--		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
+<!--		 <span aria-hidden="true">×</span><span class="sr-only">Close</span>-->
+<!--		</button>&lt;!&ndash;/ button &ndash;&gt;-->
+<!--		<div class="img-poster clearfix">-->
+<!--		 <a href=""><img class="img-responsive img-circle" src="assets/img/users/18.jpg" alt="Image"></a>-->
+<!--		 <strong><a href="">Benjamin</a></strong>-->
+<!--		 <span>12 minutes ago</span><br>-->
+<!--		 <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>-->
+<!--		</div>&lt;!&ndash;/ img-poster &ndash;&gt;-->
+
+<!--		<ul class="img-comment-list">-->
+<!--		 <li>-->
+<!--		  <div class="comment-img">-->
+<!--		   <img src="assets/img/users/17.jpeg" class="img-responsive img-circle" alt="Image">-->
+<!--		  </div>-->
+<!--		  <div class="comment-text">-->
+<!--		   <strong><a href="">Anthony McCartney</a></strong>-->
+<!--		   <p>Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>-->
+<!--		  </div>-->
+<!--		 </li>&lt;!&ndash;/ li &ndash;&gt;-->
+<!--		 <li>-->
+<!--		  <div class="comment-img">-->
+<!--		   <img src="assets/img/users/15.jpg" class="img-responsive img-circle" alt="Image">-->
+<!--		  </div>-->
+<!--		  <div class="comment-text">-->
+<!--		   <strong><a href="">Vanessa Wells</a></strong>-->
+<!--		   <p>Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span>on December 5th, 2016</span>-->
+<!--		  </div>-->
+<!--		 </li>&lt;!&ndash;/ li &ndash;&gt;-->
+<!--		 <li>-->
+<!--		  <div class="comment-img">-->
+<!--		   <img src="assets/img/users/14.jpg" class="img-responsive img-circle" alt="Image">-->
+<!--		  </div>-->
+<!--		  <div class="comment-text">-->
+<!--		   <strong><a href="">Sean Coleman</a></strong>-->
+<!--		   <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>-->
+<!--		  </div>-->
+<!--		 </li>&lt;!&ndash;/ li &ndash;&gt;-->
+<!--		 <li>-->
+<!--		  <div class="comment-img">-->
+<!--		   <img src="assets/img/users/13.jpeg" class="img-responsive img-circle" alt="Image">-->
+<!--		  </div>-->
+<!--		  <div class="comment-text">-->
+<!--		   <strong><a href="">Anna Morgan</a></strong>-->
+<!--		   <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>-->
+<!--		  </div>-->
+<!--		 </li>&lt;!&ndash;/ li &ndash;&gt;-->
+<!--		 <li>-->
+<!--		  <div class="comment-img">-->
+<!--		   <img src="assets/img/users/3.jpg" class="img-responsive img-circle" alt="Image">-->
+<!--		  </div>-->
+<!--		  <div class="comment-text">-->
+<!--		   <strong><a href="">Allison Fowler</a></strong>-->
+<!--		   <p class="">Hello this is a test comment.</p> <span class="date sub-text">on December 5th, 2016</span>-->
+<!--		  </div>-->
+<!--		 </li>&lt;!&ndash;/ li &ndash;&gt;-->
+<!--		</ul>&lt;!&ndash;/ comment-list &ndash;&gt;-->
+
+<!--		<div class="modal-meta-bottom">-->
+<!--		 <ul>-->
+<!--		  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> 786,286</span> |-->
+<!--			  <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>-->
+<!--		  <li>-->
+<!--		   <span class="thumb-xs">-->
+<!--			<img class="img-responsive img-circle" src="assets/img/users/13.jpeg" alt="...">-->
+<!--		   </span>-->
+<!--		   <div class="comment-body">-->
+<!--			 <input class="form-control input-sm" type="text" placeholder="Write your comment...">-->
+<!--		   </div>&lt;!&ndash;/ comment-body &ndash;&gt;-->
+<!--		  </li>-->
+<!--		 </ul>-->
+<!--		</div>&lt;!&ndash;/ modal-meta-bottom &ndash;&gt;-->
+
+<!--	   </div>&lt;!&ndash;/ modal-meta-top &ndash;&gt;-->
+<!--	  </div>&lt;!&ndash;/ col-md-4 &ndash;&gt;-->
+
+<!--	 </div>&lt;!&ndash;/ row &ndash;&gt;-->
+<!--	</div>&lt;!&ndash;/ modal-body &ndash;&gt;-->
+
+<!--   </div>&lt;!&ndash;/ modal-content &ndash;&gt;-->
+<!--  </div>&lt;!&ndash;/ modal-dialog &ndash;&gt;-->
+<!-- </div>-->
 {% endblock %}
 
 {% block domjs %}

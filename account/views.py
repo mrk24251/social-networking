@@ -87,6 +87,8 @@ def register(request):
 
 @login_required
 def edit(request):
+    images = request.user.images_created.all()
+
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user,
             data=request.POST)
@@ -105,7 +107,6 @@ def edit(request):
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(
             instance=request.user.profile)
-        images = request.user.images_created.all()
         paginator = Paginator(images, 9)
         page = request.GET.get('page')
         try:
