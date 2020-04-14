@@ -7,7 +7,7 @@
                <a href="{{ image.get_absolute_url }}">
                 {% thumbnail image.image "300x300" crop="100%" as im %}
                     <div class="col-lg-4">
-                     <a href='#' data-toggle="modal">
+                     <a href='#' data-toggle="modal" data-target="#exampleModal">
                      <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
                               background-size: cover;
                               background-position: center center;
@@ -31,6 +31,27 @@
 	   </div>
 	  </div>
 </section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
 <!--<div>-->
 
 <!--    <div class="info">-->

@@ -606,6 +606,10 @@ img.user-detail {
     overflow:auto;
     margin-right:20px;
 }
+
+.follow-container{
+    direction:ltr;
+}
 .image-container { margin-top:40px; }
 
 /* actions */
@@ -635,7 +639,7 @@ img.user-detail {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width:100%;
+    width:100%
 }
 .menu {
     padding-left: 0;
