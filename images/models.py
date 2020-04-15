@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Image(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -31,3 +32,16 @@ class Image(models.Model):
 
     def get_absolute_url(self):
         return reverse('images:detail', args=[self.id, self.slug])
+
+class Comment(models.Model):
+    image = models.ForeignKey(Image,
+            on_delete=models.CASCADE,
+            related_name='comments')
+    user = models.ForeignKey(User,
+            on_delete=models.CASCADE,
+            related_name='comments')
+    body = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ('created',)

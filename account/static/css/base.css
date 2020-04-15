@@ -863,3 +863,229 @@ img.user-detail {
     border: 2px solid #f4f4f4;
     margin-left: 8px;
 }
+.modal-body {
+    position: relative;
+    padding: 15px;
+    direction: ltr;
+}
+.modal-image img {
+    width: 600px !important;
+    height: 540px !important;
+    vertical-align: middle;
+}
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+button.close {
+    -webkit-appearance: none;
+    padding: 0;
+    cursor: pointer;
+    background: 0 0;
+    border: 0;
+}
+.close {
+    float: right;
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .2;
+}
+.img-poster {
+    margin-bottom: 10px;
+    border-bottom: solid 1px #f4f4f4;
+    padding-bottom: 5px;
+}
+.img-comment-list {
+    list-style: none;
+    padding: 0px 10px 30px 0px;
+    height: 433px !important;
+    overflow-y: scroll;
+}
+.modal-meta-bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 5px;
+    border-top: solid 1px #f4f4f4;
+    display: block;
+}
+.sr-only {
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+.modal-meta-top .img-poster a {
+    font-family: 'Vazir', serif;
+    font-size: 12px;
+    color: #88898a !important;
+}
+.modal-meta-top .img-poster span {
+    font-family: 'Vazir, serif;
+    color: #aaa;
+    font-size: 10px;
+}
+.modal-meta-top .img-poster a.kafe-btn-mint-small {
+    font-family: 'Vazir', serif;
+    margin-right: 0px;
+    color: #fff !important;
+    border-radius: 3px;
+}
+.modal-meta-top .img-poster a {
+    font-family: 'Vazir', serif;
+    font-size: 12px;
+    color: #88898a !important;
+}
+.modal-meta-top .img-poster img {
+    height: 34px;
+    width: 34px;
+    float: right !important;
+    margin-right: 10px;
+    border: 4px solid #f4f4f4;
+}
+.modal-meta-top .img-poster a {
+    font-family: 'Vazir', serif;
+    font-size: 12px;
+    color: #88898a !important;
+}
+.img-comment-list .comment-img {
+    float: right !important;
+    margin-left: 10px !important;
+    margin-top: 5px;
+}
+.img-comment-list li > div {
+    display: table-cell;
+    direction: rtl;
+}
+.img-comment-list img {
+    width: 22px !important;
+    height: 22px !important;
+}
+.img-comment-list p {
+    font-family: 'Vazir', serif;
+    margin: 0;
+    font-size: 11px;
+    color: #848484;
+}
+li p {
+    line-height: 24px;
+}
+.img-comment-list span {
+    font-family: 'Vazir', serif;
+    font-size: .48em;
+    color: #aaa;
+}
+.img-comment-list li a {
+    font-family: 'Vazir', serif;
+    font-size: 12px;
+    color: #88898a !important;
+    display: -webkit-box
+}
+.modal-meta-bottom ul {
+    margin: 0px !important;
+    padding: 0px !important;
+    font-size: 0px !important;
+}
+.modal-meta-bottom li {
+    list-style: none;
+    padding: 0px !important;
+    margin: 0px !important;
+    font-size: 0px !important;
+    direction:rtl;
+}
+.modal-meta-bottom li span.modal-one {
+    margin-left: 10px;
+    color: #e16a70 !important;
+}
+.modal-meta-bottom li span {
+    font-family: 'Vazir', serif;
+    font-size: 12px !important;
+    color: #848484;
+}
+.modal-meta-bottom li span {
+    font-family: 'Vazir', serif;
+    font-size: 12px !important;
+    color: #848484;
+}
+.modal-meta-bottom li a.modal-like i {
+    font-size: 12px !important;
+    color: #e16a70 !important;
+    margin-left: 4px;
+    margin-right: 10px;
+}
+.modal-meta-bottom li a.modal-comment i {
+    font-size: 12px !important;
+    color: #848484 !important;
+    margin-right: 4px;
+}
+.modal-meta-bottom li span {
+    font-family: 'Vazir', serif;
+    font-size: 12px !important;
+    color: #848484;
+}
+.modal-meta-bottom .thumb-xs {
+    display: inline-block;
+    text-align: center;
+    margin: 0px !important;
+    padding: 0px !important;
+    float: right;
+}
+textarea{
+    max-height: 70px
+}
+.modal-meta-bottom .comment-body {
+    float: right !important;
+    margin: 0px !important;
+    padding: 0px !important;
+}
+.modal-meta-bottom .thumb-xs img {
+    width: 25px !important;
+    height: 25px !important;
+}
+.modal-meta-bottom .comment-body textarea {
+    width: 200px !important;
+    margin-right: 10px;
+}
+.input-sm {
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 10px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.modal-dialog {
+    max-width: 830px;
+    height: 450px !important;
+}
+@media (min-width: 768px)
+.modal-dialog {
+    width: 600px !important;
+    margin: 30px auto;
+}

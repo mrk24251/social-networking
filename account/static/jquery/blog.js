@@ -17,4 +17,9 @@ $(document).ready(function(){
 //            $(".topnav").css("display", "none");
 //        }
 //    });
+    $(".user_photo").on('click',function(){
+        console.log('dddddddddddddd',$(this).data('comment'));
+        $(".img-responsive-big").attr("src", $(this).data('url'));
+        $(".modal-one").text($(this).data('like'));
+    });
 });
