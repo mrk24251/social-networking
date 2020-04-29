@@ -7,7 +7,7 @@
                <a href="{{ image.get_absolute_url }}">
                 {% thumbnail image.image "300x300" crop="100%" as im %}
                     <div class="col-lg-4">
-                     <a href='#' class="user_photo" data-comment={{image.comments}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
+                     <a href='#' class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
                      <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
                               background-size: cover;
                               background-position: center center;
@@ -34,13 +34,16 @@
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
+     <div class="modal-dialog" role="document">
     <div class="modal-content">
         <div class="modal-body">
 
          <div class="row">
 
           <div class="col-md-8 modal-image">
+           <button id="close_image_button" type="button" class="close" data-dismiss="modal" aria-hidden="true">
+			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
+           </button><!--/ button -->
            <img class="img-responsive img-responsive-big" src="/static/img/person.jpg" alt="Image">
           </div><!--/ col-md-8 -->
           <div class="col-md-4 modal-meta">
@@ -55,61 +58,7 @@
 <!--		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>-->
 <!--            </div>&lt;!&ndash;/ img-poster &ndash;&gt;-->
 
-            <ul class="img-comment-list">
-             <li>
-              <div class="comment-img">
-               <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-              </div>
-              <div class="comment-text">
-               <strong><a href="">علیرضا</a></strong>
-               <p>سلام بر دوستان گلم. امروز روز زیبایی است.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
-             <li>
-              <div class="comment-img">
-               <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-              </div>
-              <div class="comment-text">
-               <strong><a href="">علیرضا</a></strong>
-               <p>سلام بر دوستان گلم. امروز روز زیبایی است.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
-             <li>
-              <div class="comment-img">
-               <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-              </div>
-              <div class="comment-text">
-               <strong><a href="">علیرضا</a></strong>
-               <p>سلام بر دوستان گلم. امروز روز زیبایی است.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
-             <li>
-              <div class="comment-img">
-               <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-              </div>
-              <div class="comment-text">
-               <strong><a href="">علیرضا</a></strong>
-               <p>سلام بر دوستان گلم. امروز روز زیبایی است.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
-             <li>
-              <div class="comment-img">
-               <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-              </div>
-              <div class="comment-text">
-               <strong><a href="">علیرضا</a></strong>
-               <p>سلام بر دوستان گلم. امروز روز زیبایی است.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
-             <li>
-              <div class="comment-img">
-               <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-              </div>
-              <div class="comment-text">
-               <strong><a href="">علیرضا</a></strong>
-               <p>سلام بر دوستان گلم. امروز روز زیبایی است.</p> <span class="date sub-text">on December 5th, 2016</span>
-              </div>
-             </li><!--/ li -->
+            <ul class="img-comment-list" id="comment-list-modal">
             </ul><!--/ comment-list -->
 
             <div class="modal-meta-bottom">

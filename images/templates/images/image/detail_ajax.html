@@ -1,0 +1,15 @@
+{% for comment in image.comments.all %}
+<li>
+  <div class="comment-img">
+    {% if comment.user.profile.photo.url %}
+      <img src={{comment.user.profile.photo.url}} class="img-responsive img-circle" alt="Image">
+    {% else %}
+        <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
+    {% endif %}
+  </div>
+  <div class="comment-text">
+   <strong><a href="">{{comment.user.first_name}}</a></strong>
+   <p>{{comment.body|linebreaks|truncatechars:92}}</p> <span class="date sub-text">On {{comment.created}}</span>
+  </div>
+</li><!--/ li -->
+{% endfor %}

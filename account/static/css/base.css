@@ -869,7 +869,7 @@ img.user-detail {
     direction: ltr;
 }
 .modal-image img {
-    width: 600px !important;
+    width: 100% !important;
     height: 540px !important;
     vertical-align: middle;
 }
@@ -884,6 +884,7 @@ button.close {
     cursor: pointer;
     background: 0 0;
     border: 0;
+    display: contents;
 }
 .close {
     float: right;
@@ -903,7 +904,7 @@ button.close {
 .img-comment-list {
     list-style: none;
     padding: 0px 10px 30px 0px;
-    height: 433px !important;
+    height: 418px !important;
     overflow-y: scroll;
 }
 .modal-meta-bottom {
@@ -964,6 +965,10 @@ button.close {
 }
 .img-comment-list li > div {
     display: table-cell;
+    direction: rtl;
+}
+.img-comment-list li{
+    display: flex;
     direction: rtl;
 }
 .img-comment-list img {
@@ -1046,13 +1051,14 @@ textarea{
     float: right !important;
     margin: 0px !important;
     padding: 0px !important;
+    width: 87%;
 }
 .modal-meta-bottom .thumb-xs img {
     width: 25px !important;
     height: 25px !important;
 }
 .modal-meta-bottom .comment-body textarea {
-    width: 200px !important;
+    width: -webkit-fill-available;
     margin-right: 10px;
 }
 .input-sm {
@@ -1084,8 +1090,8 @@ textarea{
     max-width: 830px;
     height: 450px !important;
 }
-@media (min-width: 768px)
-.modal-dialog {
-    width: 600px !important;
-    margin: 30px auto;
+@media (min-width: 768px){
+    #close_image_button{
+        display:none;
+    }
 }

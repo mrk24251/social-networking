@@ -127,9 +127,20 @@
                 }
                 else {
                     block_request = false;
-                    $('#image-list').append(data);
+                    $('#comment-list-modal').append(data);
                 }
             });
         }
     });
+
+    $('.user_photo').click(function(e){
+		$( "#comment-list-modal" ).empty();
+        var ddd=$(this);
+		var slugg=ddd.data('slug')
+		var idd=ddd.data('id')
+		console.log('aaa')
+		$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+			$('#comment-list-modal').append(data);
+		});
+});
 {% endblock %}

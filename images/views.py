@@ -46,7 +46,10 @@ def image_detail(request, id, slug):
     total_views = r.incr('{}'.format(image.id))
     # increment image ranking by 1
     r.zincrby('image_ranking', 1, image.id)
-
+    if request.is_ajax():
+        return render(request,
+                      'images/image/detail_ajax.html',
+                      {'section': 'images', 'image': image})
     return render(request,
         'images/image/detail.html',
         {'section': 'images',
