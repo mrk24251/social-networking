@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import ImageCreateForm
 from django.shortcuts import get_object_or_404
-from .models import Image
+from .models import Image,Comment
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
@@ -46,15 +46,32 @@ def image_detail(request, id, slug):
     total_views = r.incr('{}'.format(image.id))
     # increment image ranking by 1
     r.zincrby('image_ranking', 1, image.id)
+
     if request.is_ajax():
+
+        if request.method == 'POST':
+            body = request.POST.get('body')
+            user = request.user
+            image=image
+            if body:
+                Comment.objects.get_or_create(
+                    user=user,
+                    body=body,
+                    image=image)
+                return JsonResponse({'status': 'ok'})
+            return JsonResponse({'status': 'ko'})
+
         return render(request,
                       'images/image/detail_ajax.html',
-                      {'section': 'images', 'image': image})
+                      {'section': 'images',
+                        'image': image,
+                      })
     return render(request,
         'images/image/detail.html',
         {'section': 'images',
         'image': image,
-        'total_views': total_views})
+        'total_views': total_views,
+         })
 
 @ajax_required
 @login_required
@@ -80,6 +97,7 @@ def image_list(request):
     images = Image.objects.all()
     paginator = Paginator(images, 4)
     page = request.GET.get('page')
+
     try:
         images = paginator.page(page)
     except PageNotAnInteger:
@@ -96,9 +114,12 @@ def image_list(request):
         return render(request,
               'images/image/list_ajax.html',
               {'section': 'images', 'images': images})
+
     return render(request,
                   'images/image/list.html',
-                  {'section': 'images', 'images': images})
+                  {'section': 'images',
+                    'images': images
+                   })
 
 @login_required
 def image_ranking(request):

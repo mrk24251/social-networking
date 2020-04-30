@@ -63,6 +63,7 @@
 
             <div class="modal-meta-bottom">
 			 <ul>
+                 <i class="fa fa-heart"></i>
 			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> 786,286</span> |
 			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> 786,286</span> </li>
 			  <li>
@@ -74,9 +75,11 @@
                 {% endif %}
 			   </span>
 			   <div class="comment-body">
-                <textarea oninput="auto_grow(this)" class="form-control input-sm" type="text" placeholder="Write your comment..."></textarea>
-			   </div><!--/ comment-body -->
+                <textarea id="comment_textarea_id" oninput="auto_grow(this)" class="form-control input-sm" type="text" placeholder="Write your comment..."></textarea>
+                   <span id="building"><i class='fas fa-building'></i></span>
+               </div><!--/ comment-body -->
               </li>
+
              </ul>
             </div><!--/ modal-meta-bottom -->
 

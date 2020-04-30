@@ -17,6 +17,7 @@ $(document).ready(function(){
 //            $(".topnav").css("display", "none");
 //        }
 //    });
+
     $(".user_photo").on('click',function(){
         $(".img-responsive-big").attr("src", $(this).data('url'));
         $(".modal-one").text($(this).data('like'));
