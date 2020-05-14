@@ -134,18 +134,34 @@
         }
     });
 
-    $('.user_photo').click(function(e){
-		$( "#comment-list-modal" ).empty();
-        var ddd=$(this);
+	$('.user_photo').click(function(e){
+		console.log("hello20")
+		var ddd=$(this);
 		var slugg=ddd.data('slug')
 		localStorage.setItem("slug", slugg);
 		var idd=ddd.data('id')
 		localStorage.setItem("id", idd);
-		console.log('aaa')
 		$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+			$( ".img-comment-list" ).empty();
 			$('#comment-list-modal').append(data);
 		});
 	});
+    $( document ).ajaxStop(function() {
+		console.log("hello10")
+		$('.user_photo').click(function(e){
+			console.log("hello20")
+			var ddd=$(this);
+			var slugg=ddd.data('slug')
+			localStorage.setItem("slug", slugg);
+			var idd=ddd.data('id')
+			localStorage.setItem("id", idd);
+			$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+				$( ".img-comment-list" ).empty();
+				$('#comment-list-modal').append(data);
+			});
+		});
+    })
+
 
     $('#building').click(function(e){
         var ddd=$('#comment_textarea_id');
@@ -159,5 +175,13 @@
 				$('#comment-list-modal').append(data);
 			}
     	);
+	});
+	$(".user_photo").on('click',function(){
+		$(".img-responsive-big").attr("src", $(this).data('url'));
+		$(".modal-one").text($(this).data('like'));
+	});
+	$(".user_photo").on('click',function(){
+		$(".img-responsive-big").attr("src", $(this).data('url'));
+		$(".modal-one").text($(this).data('like'));
 	});
 {% endblock %}
