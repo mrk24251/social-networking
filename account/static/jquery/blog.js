@@ -17,13 +17,17 @@ $(document).ready(function(){
 //            $(".topnav").css("display", "none");
 //        }
 //    });
+//        $(".user_photo").on('click',function(){
+//            $(".img-responsive-big").attr("src", $(this).data('url'));
+//            $(".modal-one").text($(this).data('like'));
+//        });
 
-    $(".user_photo").on('click',function(){
-        $(".img-responsive-big").attr("src", $(this).data('url'));
-        $(".modal-one").text($(this).data('like'));
-    });
     $( document ).ajaxStop(function() {
         console.log('hello');
+        $(".user_photo").on('click',function(){
+            $(".img-responsive-big").attr("src", $(this).data('url'));
+            $(".modal-one").text($(this).data('like'));
+        });
         $(".user_photo").on('click',function(){
             $(".img-responsive-big").attr("src", $(this).data('url'));
             $(".modal-one").text($(this).data('like'));

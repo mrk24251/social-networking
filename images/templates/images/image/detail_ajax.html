@@ -1,11 +1,13 @@
 {% for comment in image.comments.all %}
 <li>
   <div class="comment-img">
-    {% if comment.user.profile.photo.url %}
-      <img src={{comment.user.profile.photo.url}} class="img-responsive img-circle" alt="Image">
-    {% else %}
-        <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
-    {% endif %}
+      {% with pp=comment.user.profile.photo %}
+        {% if pp %}
+          <img src={{pp.url}} class="img-responsive img-circle" alt="Image">
+        {% else %}
+            <img src="/static/img/person.jpg" class="img-responsive img-circle" alt="Image">
+        {% endif %}
+      {% endwith %}
   </div>
   <div class="comment-text">
    <strong><a href="">{{comment.user.first_name}}</a></strong>
