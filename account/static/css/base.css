@@ -420,6 +420,18 @@ ul.messages li a.close {
     margin-bottom: 0px !important;
     padding: 0px !important;
 }
+@media (max-width: 991px) and (min-width: 768px){
+    .hidden-sm {
+        display: none!important;
+    }
+}
+
+@media (max-width: 767px){
+    .hidden-xs {
+        display: none!important;
+    }
+}
+
 .profilebox3{
     background: linear-gradient( rgba(34,34,34,0.45), rgba(34,34,34,0.45)), url('../img/be3.jpg') no-repeat;
     background-size: cover;
@@ -778,12 +790,16 @@ img.user-detail {
     margin-top: 10px;
     border-bottom: 2px solid #f4f4f4;
 }
+.modal-comment{
+    margin-left:4px;
+}
 .followers-box .followers-body img {
     width: 37px;
     height: 37px;
     float: right;
     padding: 2px;
     border: 2px solid #f4f4f4;
+    margin-top: -12px;
 }
 .img-responsive {
     display: block;
@@ -870,7 +886,7 @@ img.user-detail {
 }
 .modal-image img {
     width: 100% !important;
-    height: 540px !important;
+    height: auto !important;
     vertical-align: middle;
 }
 .img-responsive {
@@ -1032,6 +1048,11 @@ li p {
     color: #848484 !important;
     margin-right: 4px;
 }
+.material-icons{
+    transform: rotate(180deg);
+    font-size:21px;
+    cursor:pointer;
+}
 .modal-meta-bottom li span {
     font-family: 'Vazir', serif;
     font-size: 12px !important;
@@ -1051,7 +1072,8 @@ textarea{
     float: right !important;
     margin: 0px !important;
     padding: 0px !important;
-    width: 87%;
+    width: 88%;
+    position:relative;
 }
 .modal-meta-bottom .thumb-xs img {
     width: 25px !important;
@@ -1060,6 +1082,11 @@ textarea{
 .modal-meta-bottom .comment-body textarea {
     width: -webkit-fill-available;
     margin-right: 10px;
+}
+#building{
+    position:absolute;
+    top: 6px;
+    left: 5px;
 }
 .input-sm {
     height: 30px;

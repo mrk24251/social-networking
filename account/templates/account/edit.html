@@ -85,9 +85,9 @@
 		<div class="row">
 			<div class="menu-category1">
 			 <ul class="menu">
-			  <li class="current-menu-item"><a href="#image-list">Posts <span>{{user.images_created.count}}</span></a></li>
-			  <li><a href="follower/">Followers <span>{{user.followers.count}}</span></a></li>
-			  <li><a href="following/">Following <span>{{user.following.count}}</span></a></li>
+			  <li class="current-menu-item"><a href="#image-list">پست <span>{{user.images_created.count}}</span></a></li>
+			  <li><a href="follower/">دنبال کننده <span>{{user.followers.count}}</span></a></li>
+			  <li><a href="following/">دنبال شونده <span>{{user.following.count}}</span></a></li>
 			 </ul>
 			</div>
 		</div>
@@ -113,7 +113,6 @@
 	}
 {% endblock %}
 {% block domready %}
-	console.log('ssssss')
     var page = 1;
     var empty_page = false;
     var block_request = false;
@@ -135,7 +134,6 @@
     });
 
 	$('.user_photo').click(function(e){
-		console.log("hello20")
 		var ddd=$(this);
 		var slugg=ddd.data('slug')
 		localStorage.setItem("slug", slugg);
@@ -145,21 +143,36 @@
 			$( ".img-comment-list" ).empty();
 			$('#comment-list-modal').append(data);
 		});
+		setInterval(function(){
+			updateComment()
+		}, 500);
 	});
+
+	function updateComment(){
+		localStorage.getItem("id", idd);
+		localStorage.getItem("slug", slugg);
+		$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+			$( ".img-comment-list" ).empty();
+			$('#comment-list-modal').append(data);
+		});
+	}
+
     $( document ).ajaxStop(function() {
-		console.log("hello10")
 		$('.user_photo').click(function(e){
-			console.log("hello20")
 			var ddd=$(this);
 			var slugg=ddd.data('slug')
 			localStorage.setItem("slug", slugg);
 			var idd=ddd.data('id')
 			localStorage.setItem("id", idd);
+			$(".img-responsive-big").attr("src", $(this).data('url'));
+			$(".modal-one").text($(this).data('like'));
+			$(".modal-two").text($(this).data('comment'));
 			$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
 				$( ".img-comment-list" ).empty();
 				$('#comment-list-modal').append(data);
 			});
 		});
+
     })
 
 
@@ -175,13 +188,12 @@
 				$('#comment-list-modal').append(data);
 			}
     	);
+		$( "#comment_textarea_id" ).val('');
+
 	});
 	$(".user_photo").on('click',function(){
 		$(".img-responsive-big").attr("src", $(this).data('url'));
 		$(".modal-one").text($(this).data('like'));
-	});
-	$(".user_photo").on('click',function(){
-		$(".img-responsive-big").attr("src", $(this).data('url'));
-		$(".modal-one").text($(this).data('like'));
+		$(".modal-two").text($(this).data('comment'));
 	});
 {% endblock %}
