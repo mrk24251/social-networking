@@ -7,7 +7,7 @@
                <a href="{{ image.get_absolute_url }}">
                 {% thumbnail image.image "300x300" crop="100%" as im %}
                     <div class="col-lg-4">
-                     <a href='#' class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
+                     <a href="{{ image.get_absolute_url }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
                      <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
                               background-size: cover;
                               background-position: center center;

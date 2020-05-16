@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import ImageCreateForm
+from .forms import ImageCreateForm,ImageCreateImageForm
 from django.shortcuts import get_object_or_404
 from .models import Image,Comment
 from django.http import JsonResponse
@@ -22,8 +22,8 @@ r = redis.StrictRedis(host=settings.REDIS_HOST,
 def image_create(request):
 
     if request.method == 'POST':
-        # form is sent
-        form = ImageCreateForm(data=request.POST)
+        form = ImageCreateForm(data=request.POST,
+                               files=request.FILES)
         if form.is_valid():
             new_item = form.save(commit=False)
             # assign current user to the item
@@ -38,6 +38,29 @@ def image_create(request):
         form = ImageCreateForm(data=request.GET)
     return render(request,
                   'images/image/create.html',
+                  {'section': 'images',
+                   'form': form})
+
+@login_required
+def image_create_image(request):
+
+    if request.method == 'POST':
+        form = ImageCreateImageForm(data=request.POST,
+                               files=request.FILES)
+        if form.is_valid():
+            new_item = form.save(commit=False)
+            # assign current user to the item
+            new_item.user = request.user
+            create_action(request.user, 'upload image', new_item)
+            new_item.save()
+            messages.success(request, 'Image added successfully')
+            # redirect to new created item detail view
+            return redirect(new_item.get_absolute_url())
+    else:
+        # build form with data provided by the bookmarklet via GET
+        form = ImageCreateImageForm(data=request.GET)
+    return render(request,
+                  'images/image/create_image.html',
                   {'section': 'images',
                    'form': form})
 

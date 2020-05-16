@@ -2,11 +2,42 @@
 {% block title %}Bookmark an image{% endblock %}
 
 {% block content %}
-<h1>Bookmark an image</h1>
-<img src="{{ request.GET.url }}" class="image-preview">
-<form action="." method="post">
-    {{ form.as_p }}
-    {% csrf_token %}
-    <input type="submit" value="Bookmark it!">
-</form>
+<!--<h1>Bookmark an image</h1>-->
+<!--<img src="{{ request.GET.url }}" class="image-preview">-->
+<!--<form action="." method="post">-->
+<!--    {{ form.as_p }}-->
+<!--    {% csrf_token %}-->
+<!--    <input type="submit" value="Bookmark it!">-->
+<!--</form>-->
+<section class="upload">
+  <div class="container">
+
+   <div class="row">
+    <div class="col-lg-12">
+
+     <div class="box">
+      <form action="." method="post" enctype="multipart/form-data">
+<!--       <input name="title" value="{{form.instance.title}}">-->
+<!--       <input type='hidden'  name="url" value="{% if form.instance.url %}{{form.instance.url}}{% endif %}">-->
+<!--       <input type="file" name="image">-->
+<!--      <form action="." method="post" enctype="multipart/form-data">-->
+          {{ form.as_p }}
+<!--          {% csrf_token %}-->
+<!--          <input type="submit" value="Bookmark it!">-->
+<!--      </form>-->
+      <div class="box-footer clearfix">
+        {% csrf_token %}
+       <input type="submit"  class="kafe-btn kafe-btn-mint-small pull-right btn-sm">
+       <ul class="nav nav-pills nav-sm">
+        <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-camera text-muted"></i></a></li>
+        <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-video text-muted"></i></a></li>
+       </ul>
+      </div>
+      </form>
+     </div>
+
+    </div>
+   </div>
+  </div><!--/ container -->
+ </section>
 {% endblock %}
