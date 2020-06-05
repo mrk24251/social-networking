@@ -8,6 +8,12 @@ $(document).ready(function(){
     $("#ggg").on('change', function() {
         $("#profile_button").click();
     });
+
+    $('#UploadButton').on('click',function(){
+        console.log('dddddd')
+      $("#ImageUpload").click();
+    })
+
 //          $(".topnav").hide();
 //    $(".glyphicon").on("click", function () {
 //        var txt = $(".content").is(':visible') ? 'Read More' : 'Read Less';

@@ -27,6 +27,9 @@ button{
 a:hover{
     text-decoration:none;
 }
+figure{
+    display:inline-block;
+}
 .login_body{
     background: linear-gradient( rgba(34,34,34,0.7), rgba(34,34,34,0.7) ), url('../img/aloneTree.jpeg') no-repeat center center fixed;
     background-size: cover;
@@ -765,6 +768,9 @@ img.user-detail {
 .pull-right {
     float: right!important;
 }
+#UploadButton{
+    float:left;
+}
 
 .followers {
     background: #f4f4f4;
@@ -1127,29 +1133,54 @@ textarea{
         display:none;
     }
 }
-.upload {
-    background: #f4f4f4;
-    padding: 40px 0px;
+/* ==========================================================================
+   Upload Page
+   ========================================================================== */
+.upload{
+  background: #f4f4f4;
+  padding: 40px 0px;
 }
-.upload .row {
-    margin-bottom: 30px;
+
+.upload .row{
+  margin-bottom: 30px;
 }
-.box {
-    background-color: #fff;
-    position: relative;
-    margin-bottom: 1.5rem;
+
+.box{
+  background-color: #fff;
+  position: relative;
+  margin-bottom: 1.5rem;
 }
 .box .no-border {
-    font-family: 'Vazir', serif;
-    border-color: transparent;
-    border-width: 0;
+  font-family: 'Vazir', serif;
+  border-color: transparent;
+  border-width: 0;
 }
-.box .box-footer {
-    padding: 1rem;
+.box .box-footer{
+  padding: 1rem;
 }
-.box .kafe-btn-mint-small {
-    font-family: 'Vazir', serif !important;
-    font-size: 14px;
+.box .kafe-btn-mint-small{
+  font-family: 'Vazir', serif !important;
+  font-size: 14px;
+}
+.box .nav-sm .nav-link {
+  padding: .25rem .75rem;
+}
+
+.upload .card .card-image img{
+  border-radius: 4px;
+}
+.upload .card .card-header{
+  padding: 10px;
+  border-left: 2px solid #d4d6d7;
+  border-right: 2px solid #d4d6d7;
+  border-bottom: 2px solid #d4d6d7;
+  text-align: center !important;
+}
+.upload .card .card-header span{
+  font-family: 'Vazir', serif !important;
+  font-size: 16px;
+  color: #88898a;
+  font-weight: 700;
 }
 .nav {
     padding-left: 0;
@@ -1173,4 +1204,10 @@ textarea{
     position: relative;
     display: block;
     padding: 10px 15px;
+}
+
+.filter_image{
+    text-align:center;
+    margin:auto;
+    direction:ltr;
 }

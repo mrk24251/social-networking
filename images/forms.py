@@ -42,4 +42,4 @@ class ImageCreateForm(forms.ModelForm):
 class ImageCreateImageForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ('title','image', 'description')
+        fields = ('title','image', 'description', 'filter')

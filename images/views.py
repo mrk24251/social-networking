@@ -55,7 +55,7 @@ def image_create_image(request):
             new_item.save()
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
-            return redirect(new_item.get_absolute_url())
+            return redirect('/account/edit/')
     else:
         # build form with data provided by the bookmarklet via GET
         form = ImageCreateImageForm(data=request.GET)
