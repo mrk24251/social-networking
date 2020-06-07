@@ -8,7 +8,7 @@ from django.utils.text import slugify
 class ImageCreateForm(forms.ModelForm):
     class Meta:
         model = Image
-        fields = ('title', 'url', 'description')
+        fields = ('title', 'url', 'description', 'filter')
 
 
 

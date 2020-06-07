@@ -60,9 +60,23 @@
 
 			<div class="col-lg-9 " id="details-box_div">
 			   <div class="content-box">
-				 <h4><input type="text" name="first_name" maxlength="30" value="{{user_form.instance.first_name}}" id="id_first_name"></h4>
-				   <p><textarea oninput="auto_grow(this)" id="content-box-textarea" name="bio" class="profile_bio" id="id_bio">{{profile_form.instance.bio}}</textarea></p>
-				   <small><span><input class="email_input" type="email" name="email" value="{{user_form.instance.email}}" ></span></small>
+				 <h4>
+					 {% if profile_form.instance.first_name %}
+					 		<input type="text" placeholder="نام و نام خانوادگی" name="first_name" maxlength="30" value="{{user_form.instance.first_name}}" id="id_first_name">
+					 {% else %}
+					 		<input  type="text" name="first_name" maxlength="30" placeholder="نام و نام خانوادگی">
+					 {% endif %}
+				 </h4>
+					 {% if profile_form.instance.bio %}
+							 <p><textarea oninput="auto_grow(this)" placeholder="بیوگرافی" id="content-box-textarea" name="bio" class="profile_bio" id="id_bio">{{profile_form.instance.bio}}</textarea></p>
+					 {% else %}
+					 		<p><textarea oninput="auto_grow(this)" placeholder="بیوگرافی" name="bio" class="profile_bio" ></textarea></p>
+					 {% endif %}
+					 {% if profile_form.instance.first_name %}
+					 		<small><span><input class="email_input" type="email" name="email" value="{{user_form.instance.email}}" placeholder="examplae@example.com" ></span></small>
+					 {% else %}
+					 		<small><span><input class="email_input" type="email" name="email" placeholder="examplae@example.com" ></span></small>
+					 {% endif %}
 			   </div><!--/ media -->
 			</div>
 			  <div class="col-lg-3">

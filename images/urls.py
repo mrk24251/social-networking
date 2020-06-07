@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path,re_path
 from . import views
 
 app_name = 'images'
@@ -6,7 +6,7 @@ app_name = 'images'
 urlpatterns = [
     path('create/', views.image_create, name='create'),
     path('createImage/', views.image_create_image, name='create_image'),
-    path('detail/<int:id>/<slug:slug>/',views.image_detail, name='detail'),
+    re_path(r'^detail/(?P<id>\d+)/(?P<slug>[\w-]+)/$',views.image_detail, name='detail'),
     path('like/', views.image_like, name='like'),
     path('', views.image_list, name='list'),
     path('ranking/', views.image_ranking, name='create'),

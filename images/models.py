@@ -10,7 +10,7 @@ class Image(models.Model):
         on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200,
-        blank=True)
+        blank=True,unique=True,allow_unicode=True)
     url = models.URLField()
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
     description = models.TextField(blank=True, null=True)
@@ -29,7 +29,8 @@ class Image(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(self.title)
+            self.slug = slugify(self.title,allow_unicode=True)
+
         super(Image, self).save(*args, **kwargs)
 
     def get_absolute_url(self):

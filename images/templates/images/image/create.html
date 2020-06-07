@@ -1,43 +1,176 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 {% block title %}Bookmark an image{% endblock %}
 
 {% block content %}
-<!--<h1>Bookmark an image</h1>-->
-<!--<img src="{{ request.GET.url }}" class="image-preview">-->
-<!--<form action="." method="post">-->
-<!--    {{ form.as_p }}-->
-<!--    {% csrf_token %}-->
-<!--    <input type="submit" value="Bookmark it!">-->
-<!--</form>-->
 <section class="upload">
-  <div class="container">
+	  <div class="container">
+    <form action="." method="post" enctype="multipart/form-data">
+	   <div class="row">
+	    <div class="col-lg-12">
 
-   <div class="row">
-    <div class="col-lg-12">
-
-     <div class="box">
-      <form action="." method="post" enctype="multipart/form-data">
-<!--       <input name="title" value="{{form.instance.title}}">-->
-<!--       <input type='hidden'  name="url" value="{% if form.instance.url %}{{form.instance.url}}{% endif %}">-->
-<!--       <input type="file" name="image">-->
-<!--      <form action="." method="post" enctype="multipart/form-data">-->
-          {{ form.as_p }}
-<!--          {% csrf_token %}-->
-<!--          <input type="submit" value="Bookmark it!">-->
-<!--      </form>-->
-      <div class="box-footer clearfix">
+	     <div class="box">
+        <input required="required" name="title" placeholder="عنوان" class="form-control no-border" value="{{data.title}}">
+        <input required="required" style="display:none;" id="UrlInput" name="url" type="url" placeholder="url" class="form-control no-border" value="{{data.url}}">
+        <textarea class="form-control no-border" rows="3" oninput="auto_grow(this)" name="description" placeholder="توضیحات........."></textarea>
+        <input name="filter" style="display:none;" id="filter_input" value="{{form.instance.filter}}">
         {% csrf_token %}
-       <input type="submit"  class="kafe-btn kafe-btn-mint-small pull-right btn-sm">
-       <ul class="nav nav-pills nav-sm">
-        <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-camera text-muted"></i></a></li>
-        <li class="nav-item"><a class="nav-link" href=""><i class="fa fa-video text-muted"></i></a></li>
-       </ul>
-      </div>
-      </form>
-     </div>
+        <input type="submit" id="pull-right" style="display:none;" class="kafe-btn kafe-btn-mint-small pull-right btn-sm">
+        <div class="box-footer clearfix">
+        </div>
+		 </div>
 
-    </div>
-   </div>
-  </div><!--/ container -->
- </section>
+		</div>
+	   </div>
+
+
+     <div id="filter_image" style="display:none;">
+     <div class="row one-row">
+	    <div class="col-lg-12">
+        <span>فیلتر موردنظر خود را انتخاب کنید:</span>
+		  </div>
+	   </div>
+	   <div class="row">
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter" data-filter="">
+              <img src="" id="filter1" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span>Normal</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-1977 filter" data-filter="filter-1977">
+              <img src="" id="filter2" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">1977</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-willow filter" data-filter="filter-willow ">
+              <img src="" id="filter3" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Willow</span>
+            </div>
+          </div>
+        </div>
+
+       </div><!--/ row-->
+
+	   <div class="row">
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-sutro filter" data-filter="filter-sutro">
+              <img src="" id="filter4" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Sutro</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-reyes filter" data-filter="filter-reyes">
+              <img src="" id="filter5" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Reyes</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-poprocket filter" data-filter="filter-poprocket">
+              <img src="" id="filter6" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Poprocket</span>
+            </div>
+          </div>
+        </div>
+
+       </div><!--/ row-->
+
+	   <div class="row">
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-inkwell filter" data-filter="filter-inkwell">
+              <img src="" id="filter7" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Inkwell</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-nashville filter" data-filter="filter-nashville">
+              <img src="" id="filter8" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Nashville</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-3 col-sm-6 col-xs-12">
+          <div class="card">
+            <div class="card-image filter-moon filter" data-filter="filter-moon">
+              <img src="" id="filter9" class="img-responsive" alt="Image">
+            </div>
+            <div class="card-header">
+              <span class="h6">Moon</span>
+            </div>
+          </div>
+        </div>
+
+       </div><!--/ row-->
+     </div>
+    </form>
+	  </div><!--/ container -->
+	 </section>
+{% endblock %}
+{% block domjs %}
+if ($('#UrlInput').val()) {
+  $('#filter1').attr('src', $('#UrlInput').val());
+  console.log('gggggggggggg',$('#UrlInput').val())
+  $('#filter2').attr('src', $('#UrlInput').val());
+  $('#filter3').attr('src', $('#UrlInput').val());
+  $('#filter4').attr('src', $('#UrlInput').val());
+  $('#filter5').attr('src', $('#UrlInput').val());
+  $('#filter6').attr('src', $('#UrlInput').val());
+  $('#filter7').attr('src', $('#UrlInput').val());
+  $('#filter8').attr('src', $('#UrlInput').val());
+  $('#filter9').attr('src', $('#UrlInput').val());
+  document.getElementById("filter_image").removeAttribute("style");
+}
+
+function auto_grow(element) {
+  element.style.height = "0px";
+  element.style.height = (element.scrollHeight)+"px";
+}
+
+{% endblock %}
+
+{% block domready %}
+$('.filter').click(function(e){
+  $( "#filter_input" ).val($(this).data('filter'));
+  $("#pull-right").click();
+
+})
+
 {% endblock %}
