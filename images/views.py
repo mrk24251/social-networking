@@ -84,11 +84,14 @@ def image_detail(request, id, slug):
             body = request.POST.get('body')
             user = request.user
             image=image
-            if body:
+            if body and image:
                 Comment.objects.get_or_create(
                     user=user,
                     body=body,
                     image=image)
+                # assign current user to the item
+                create_action(request.user, 'commented on image ', image)
+                # redirect to new created item detail view
                 return JsonResponse({'status': 'ok'})
             return JsonResponse({'status': 'ko'})
 

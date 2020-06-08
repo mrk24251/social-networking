@@ -60,23 +60,9 @@
 
 			<div class="col-lg-9 " id="details-box_div">
 			   <div class="content-box">
-				 <h4>
-					 {% if profile_form.instance.first_name %}
-					 		<input type="text" placeholder="نام و نام خانوادگی" name="first_name" maxlength="30" value="{{user_form.instance.first_name}}" id="id_first_name">
-					 {% else %}
-					 		<input  type="text" name="first_name" maxlength="30" placeholder="نام و نام خانوادگی">
-					 {% endif %}
-				 </h4>
-					 {% if profile_form.instance.bio %}
-							 <p><textarea oninput="auto_grow(this)" placeholder="بیوگرافی" id="content-box-textarea" name="bio" class="profile_bio" id="id_bio">{{profile_form.instance.bio}}</textarea></p>
-					 {% else %}
-					 		<p><textarea oninput="auto_grow(this)" placeholder="بیوگرافی" name="bio" class="profile_bio" ></textarea></p>
-					 {% endif %}
-					 {% if profile_form.instance.first_name %}
-					 		<small><span><input class="email_input" type="email" name="email" value="{{user_form.instance.email}}" placeholder="examplae@example.com" ></span></small>
-					 {% else %}
-					 		<small><span><input class="email_input" type="email" name="email" placeholder="examplae@example.com" ></span></small>
-					 {% endif %}
+				 <h4><input type="text" name="first_name" placeholder="ناشناس" maxlength="30" value="{{user_form.instance.first_name}}" id="id_first_name"></h4>
+				   <p><textarea oninput="auto_grow(this)" placeholder="بیوگرافی" id="content-box-textarea" name="bio" class="profile_bio" id="id_bio">{{profile_form.instance.bio}}</textarea></p>
+				   <small><span><input class="email_input" placeholder="example@example.com" type="email" name="email" value="{{user_form.instance.email}}" ></span></small>
 			   </div><!--/ media -->
 			</div>
 			  <div class="col-lg-3">
@@ -192,17 +178,17 @@
 
     $('#building').click(function(e){
         var ddd=$('#comment_textarea_id');
-		slugg =localStorage.getItem("slug");
-		idd= localStorage.getItem("id");
-        $.post("/images/detail/"+ idd + "/" + slugg + "/",
-			{
-				body: ddd.val(),
-			},
-			function(data){
-				$('#comment-list-modal').append(data);
-			}
-    	);
-		$( "#comment_textarea_id" ).val('');
+				slugg =localStorage.getItem("slug");
+				idd= localStorage.getItem("id");
+						$.post("/images/detail/"+ idd + "/" + slugg + "/",
+					{
+						body: ddd.val(),
+					},
+					function(data){
+						$('#comment-list-modal').append(data);
+					}
+					);
+				$( "#comment_textarea_id" ).val('');
 
 	});
 	$(".user_photo").on('click',function(){
