@@ -29,7 +29,7 @@ def image_create(request):
             new_item = form.save(commit=False)
             # assign current user to the item
             new_item.user = request.user
-            create_action(request.user, 'bookmarked image', new_item)
+            create_action(request.user, 'عکسی را اضافه کرد با عنوان', new_item)
             new_item.save()
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
@@ -59,7 +59,7 @@ def image_create_image(request):
             new_item = form.save(commit=False)
             # assign current user to the item
             new_item.user = request.user
-            create_action(request.user, 'upload image', new_item)
+            create_action(request.user, 'عکسی را آپلود کرد با عنوان', new_item)
             new_item.save()
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
@@ -90,7 +90,7 @@ def image_detail(request, id, slug):
                     body=body,
                     image=image)
                 # assign current user to the item
-                create_action(request.user, 'commented on image ', image)
+                create_action(request.user, 'نظری منتشر کرد بر روی عکسی با عنوان ', image)
                 # redirect to new created item detail view
                 return JsonResponse({'status': 'ok'})
             return JsonResponse({'status': 'ko'})
@@ -118,7 +118,7 @@ def image_like(request):
             image = Image.objects.get(id=image_id)
             if action == 'like':
                 image.users_like.add(request.user)
-                create_action(request.user, 'likes', image)
+                create_action(request.user, 'عکسی را لایک کرد با عنوان', image)
             else:
                 image.users_like.remove(request.user)
             return JsonResponse({'status':'ok'})

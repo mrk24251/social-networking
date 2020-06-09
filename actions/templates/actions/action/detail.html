@@ -1,41 +1,35 @@
-{% load thumbnail %}
 
+{% for action in actions %}
 {% with user=action.user profile=action.user.profile %}
-<div class="action">
-    <div class="images">
+
+		 <li id="notification_li" >
+       <div class="media first_child">
         {% if profile.photo %}
-            {% thumbnail user.profile.photo "80x80" crop="100%" as im %}
-                <a href="{{ user.get_absolute_url }}">
-                    <img src="{{ im.url }}" alt="{{ user.get_full_name }}" class="item-img">
-                </a>
-            {% endthumbnail %}
-        {% endif %}
-        {% if action.target %}
-            {% with target=action.target %}
-                {% if target.image %}
-                    {% thumbnail target.image "80x80" crop="100%" as im %}
-                        <a href="{{ target.get_absolute_url }}">
-                            <img src="{{ im.url }}" class="item-img">
-                        </a>
-                    {% endthumbnail %}
-                {% endif %}
-            {% endwith %}
-        {% endif %}
-    </div>
-    <div class="info">
-        <p>
-            <span class="date">{{ action.created|timesince }} ago</span>
-            <br />
             <a href="{{ user.get_absolute_url }}">
-                {{ user.first_name }}
+                {% with im=user.profile.photo %}
+                <img src="{{ im.url }}" alt="" class="img-responsive img-circle">
+                {% endwith %}
+            </a>
+        {% else %}
+					<a href="/static/img/person.jpg"><img class="img-responsive img-circle" src="/static/img/person.jpg" alt=""></a>
+        {% endif %}
+        <div class="media_body">
+         <p><a href="{{ user.get_absolute_url }}">
+             <b>{{ user.first_name }}</b>
             </a>
             {{ action.verb }}
             {% if action.target %}
                 {% with target=action.target %}
-                    <a href="{{ target.get_absolute_url }}">{{ target }}</a>
+                    <a href="{{ target.get_absolute_url }}">{{ target|truncatechars:28 }}</a>
                 {% endwith %}
             {% endif %}
-        </p>
-    </div>
-</div>
+         </p>
+         <h6>{{ action.created|timesince }} ago</h6>
+        </div>
+       </div>
+     </li>
+
+
 {% endwith %}
+
+{% endfor %}

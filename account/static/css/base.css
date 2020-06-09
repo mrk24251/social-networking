@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Abhaya+Libre");
 @font-face
 {
     font-family: Alama;
@@ -23,6 +24,9 @@ body {
 }
 button{
     outline:none;
+}
+ul {
+    list-style: none outside;
 }
 a:hover{
     text-decoration:none;
@@ -1213,4 +1217,82 @@ textarea{
 }
 .filter{
     cursor:pointer;
+}
+
+/* ==========================================================================
+   Notifications Page
+   ========================================================================== */
+.notifications{
+  background: #f4f4f4;
+  padding: 30px 0px 50px 0px;
+}
+.notifications ul li {
+ line-height: 0px;
+ background-color: transparent;
+ padding: 0;
+}
+.notifications ul li .media {
+ border-bottom: 1px solid #e0e9ed;
+ padding: 21px;
+ background: #fff;
+ width: 100%;
+}
+.notifications ul li .media img {
+ width: 46px;
+ height: 46px;
+}
+.media img {
+    width: 48px !important;
+    height: 48px !important;
+    padding: 2px;
+    border: 2px solid #f4f4f4;
+}
+.media_body {
+ margin-right: 20px;
+ flex: 1;
+}
+.notifications ul li .media .media_body p {
+ font-family: 'Vazir', serif;
+ font-size: 12px;
+ color: #858686;
+ margin-top: 10px;
+ line-height: 1;
+}
+.notifications ul li .media .media_body h6 {
+ font-family: 'Abhaya Libre', serif;
+ font-size: 12.5px;
+ color: #aaa;
+ padding-top: 6px;
+ float: right;
+ line-height: 0;
+ direction:ltr;
+}
+.notifications ul li .media .media_body .btn_group {
+ float: left;
+ line-height: 1;
+ padding-top: 5px;
+}
+.media_body b{
+    color:#858686;
+}
+.notifications ul li .media .media_body .btn_group a.kafe-btn-mint {
+ text-align: center;
+ min-width: 70px;
+ padding: 7px 15px;
+ display: inline-block;
+}
+.notifications ul li .media .media_body .btn_group a:hover {
+ color: #fff !important;
+}
+.notifications ul li .media .media_body p span.emp{
+ color: #0fc19e !important;
+}
+
+@media (min-width: 1200px){
+    .col-lg-offset-2 {
+    margin-right: 16.66666667%;
+    }
+}
+#notification_li {
+    margin-right: -40px;
 }

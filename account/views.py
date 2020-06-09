@@ -55,10 +55,31 @@ def notification(request):
     actions = Action.objects.exclude(user=request.user)
     following_ids = request.user.following.values_list('id',
                                                        flat=True)
+
     if following_ids:
         # If user is following others, retrieve only their actions
         actions = actions.filter(user_id__in=following_ids)
-    actions = actions.select_related('user', 'user__profile').prefetch_related('target')[:10]
+    actions = actions.select_related('user', 'user__profile').prefetch_related('target')
+    paginator = Paginator(actions, 12)
+    page = request.GET.get('page')
+    try:
+        actions = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        actions = paginator.page(1)
+
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            # return an empty page
+            return HttpResponse('')
+            # If page is out of range deliver last page of results
+        actions = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request,
+                      'actions/action/detail.html',
+                      {'section': 'profile', 'actions': actions})
 
     return render(request,
         'account/notification.html',
@@ -169,7 +190,7 @@ def user_follow(request):
                 Contact.objects.get_or_create(
                     user_from=request.user,
                     user_to=user)
-                create_action(request.user, 'is following', user)
+                create_action(request.user, 'دنبال کرد ', user)
             else:
                 Contact.objects.filter(user_from=request.user,
                     user_to=user).delete()
