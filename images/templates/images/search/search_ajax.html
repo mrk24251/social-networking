@@ -1,5 +1,12 @@
-{% for image in images %}
 
+<!--{% for image in results %}-->
+<!--  <h4><a href="{{ image.get_absolute_url }}">{{ image.title }}</a></h4>-->
+<!--  {{ image.description|truncatewords:5 }}-->
+<!--  {% empty %}-->
+<!--  <p>There are no results for your query.</p>-->
+<!--{% endfor %}-->
+
+{% for image in results %}
     <div class="col-xl-4">
     <a href="#" data-toggle="modallll">
         {% with im=image.image %}

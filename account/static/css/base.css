@@ -747,6 +747,7 @@ img.user-detail {
     margin-bottom: 20px;
     padding: 0px !important;
 }
+
 .explore-top {
     padding: 5px;
     direction: ltr;
@@ -1296,3 +1297,12 @@ textarea{
 #notification_li {
     margin-right: -40px;
 }
+
+.explore-body img {
+    width: 33px;
+    height: 33px;
+    border: 2px solid #fff;
+    position: relative;
+    top: 320px;
+}
+

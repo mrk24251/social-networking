@@ -43,3 +43,6 @@ class ImageCreateImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ('title','image', 'description', 'filter')
+
+class SearchForm(forms.Form):
+    query = forms.CharField()

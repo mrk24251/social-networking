@@ -10,7 +10,7 @@ class Image(models.Model):
         on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200,
-        blank=True,unique=True,allow_unicode=True)
+        blank=True,allow_unicode=True)
     url = models.URLField()
     image = models.ImageField(upload_to='images/%Y/%m/%d/')
     description = models.TextField(blank=True, null=True)

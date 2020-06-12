@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import ImageCreateForm,ImageCreateImageForm
+from .forms import ImageCreateForm,ImageCreateImageForm, SearchForm
 from django.shortcuts import get_object_or_404
 from .models import Image,Comment
 from django.http import JsonResponse
@@ -13,6 +13,7 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from actions.utils import create_action
 import redis
 from django.conf import settings
+from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank
 
 r = redis.StrictRedis(host=settings.REDIS_HOST,
     port=settings.REDIS_PORT,
@@ -129,7 +130,7 @@ def image_like(request):
 @login_required
 def image_list(request):
     images = Image.objects.all()
-    paginator = Paginator(images, 4)
+    paginator = Paginator(images, 9)
     page = request.GET.get('page')
 
     try:
@@ -169,3 +170,49 @@ def image_ranking(request):
                   'images/image/ranking.html',
                   {'section': 'images',
                    'most_viewed': most_viewed})
+
+@login_required
+def image_search(request):
+    form = SearchForm()
+    query = None
+    results = []
+
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            search_vector = SearchVector('title', weight='A') + SearchVector('description',
+                                                                             weight='B')
+            search_query = SearchQuery(query)
+            results = Image.objects.annotate(
+                search=search_vector,
+                rank=SearchRank(search_vector, search_query)
+            ).filter(rank__gte=0.1).order_by('-rank')
+
+            paginator = Paginator(results, 4)
+            page = request.GET.get('page')
+
+            try:
+                results = paginator.page(page)
+            except PageNotAnInteger:
+                # If page is not an integer deliver the first page
+                results = paginator.page(1)
+            except EmptyPage:
+                if request.is_ajax():
+                    # If the request is AJAX and the page is out of range
+                    # return an empty page
+                    return HttpResponse('')
+                    # If page is out of range deliver last page of results
+                results = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request,
+                      'images/search/search_ajax.html',
+                      {'section': 'images', 'results': results})
+
+    return render(request,
+        'images/search/search.html',
+        {'section': 'images',
+         'form': form,
+        'query': query,
+        'results': results})
