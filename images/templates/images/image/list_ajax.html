@@ -1,9 +1,11 @@
+{% load thumbnail %}
+
 {% for image in images %}
 
+    {% thumbnail image.image "300x300" crop="100%" as im %}
     <div class="col-xl-4">
-    <a href="#" data-toggle="modallll">
-        {% with im=image.image %}
-         <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
+      <a href="{{ image.get_absolute_url }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-filter="{{image.filter }}" data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
+         <div data-toggle="modal" class=" {{image.filter }} explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
                   background-size: cover;
                       background-position: center center;
                       -webkit-background-size: cover;
@@ -27,7 +29,9 @@
              </div>
           {% endif %}
          </div>
-        {% endwith %}
-     </a>
+      </a>
     </div><!--/ col-lg-4 -->
+    {% endthumbnail %}
 {% endfor %}
+
+{% include "account/ChatModal/modal.html" %}

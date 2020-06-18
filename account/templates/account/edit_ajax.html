@@ -7,7 +7,7 @@
                <a href="{{ image.get_absolute_url }}">
                 {% thumbnail image.image "300x300" crop="100%" as im %}
                     <div class="col-lg-4">
-                     <a href="{{ image.get_absolute_url }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
+                     <a href="{{ image.get_absolute_url }}" data-filter="{{image.filter }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
                      <div class="explorebox {{image.filter }}" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
                               background-size: cover;
                               background-position: center center;
@@ -32,65 +32,7 @@
 	  </div>
 </section>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-     <div class="modal-dialog" role="document">
-    <div class="modal-content">
-        <div class="modal-body">
-
-         <div class="row">
-
-          <div class="col-md-8 modal-image">
-           <button id="close_image_button" type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-           </button><!--/ button -->
-           <img class="img-responsive img-responsive-big" src="/static/img/person.jpg" alt="Image">
-          </div><!--/ col-md-8 -->
-          <div class="col-md-4 modal-meta">
-           <div class="modal-meta-top">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-			 <span aria-hidden="true">×</span><span class="sr-only">Close</span>
-			</button><!--/ button -->
-<!--            <div class="img-poster clearfix">-->
-<!--             <a href=""><img class="img-responsive img-circle" src="assets/img/users/18.jpg" alt="Image"></a>-->
-<!--             <strong><a href="">Benjamin</a></strong>-->
-<!--             <span>12 minutes ago</span><br>-->
-<!--		     <a href="" class="kafe kafe-btn-mint-small"><i class="fa fa-check-square"></i> Following</a>-->
-<!--            </div>&lt;!&ndash;/ img-poster &ndash;&gt;-->
-
-            <ul class="img-comment-list" id="comment-list-modal">
-            </ul><!--/ comment-list -->
-
-            <div class="modal-meta-bottom">
-			 <ul>
-                 <i class="fa fa-heart"></i>
-			  <li><a class="modal-like" href="#"><i class="fa fa-heart"></i></a><span class="modal-one"> 786,286</span> |
-			      <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span class="modal-two"> 786,286</span> </li>
-			  <li>
-			   <span class="thumb-xs">
-                {% if user.profile.photo %}
-                 <img class="img-responsive img-circle" src="{{user.profile.photo.url}}" alt="...">
-                {% else %}
-                 <img class="img-responsive img-circle" src="/static/img/person.jpg" alt="...">
-                {% endif %}
-			   </span>
-			   <div class="comment-body">
-                <textarea id="comment_textarea_id" oninput="auto_grow(this)" class="form-control input-sm" type="text" placeholder="Write your comment..."></textarea>
-                <span id="building"><i class="material-icons">send</i></span>
-               </div><!--/ comment-body -->
-              </li>
-
-             </ul>
-            </div><!--/ modal-meta-bottom -->
-
-           </div><!--/ modal-meta-top -->
-          </div><!--/ col-md-4 -->
-
-         </div><!--/ row -->
-        </div>
-    </div>
-  </div>
-</div>
+{% include "account/ChatModal/modal.html" %}
 <!--<div>-->
 
 <!--    <div class="info">-->

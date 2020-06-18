@@ -1,4 +1,4 @@
-
+{% load thumbnail %}
 <!--{% for image in results %}-->
 <!--  <h4><a href="{{ image.get_absolute_url }}">{{ image.title }}</a></h4>-->
 <!--  {{ image.description|truncatewords:5 }}-->
@@ -8,9 +8,9 @@
 
 {% for image in results %}
     <div class="col-xl-4">
-    <a href="#" data-toggle="modallll">
-        {% with im=image.image %}
-         <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
+      {% thumbnail image.image "300x300" crop="100%" as im %}
+      <a href="{{ image.get_absolute_url }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-filter="{{image.filter }}" data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
+         <div data-toggle="modal" data-target="#exampleModal" class=" {{image.filter }} explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
                   background-size: cover;
                       background-position: center center;
                       -webkit-background-size: cover;
@@ -34,7 +34,9 @@
              </div>
           {% endif %}
          </div>
-        {% endwith %}
      </a>
+      {% endthumbnail %}
     </div><!--/ col-lg-4 -->
 {% endfor %}
+
+{% include "account/ChatModal/modal.html" %}
