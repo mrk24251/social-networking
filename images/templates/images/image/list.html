@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block title %}Images bookmarked{% endblock %}
 
@@ -7,118 +8,83 @@
 	  <div class="container">
 
 	   <div class="row one-row">
-	    <div class="col-lg-12">
-	     <a href=""><h4>See All</h4></a>
+<!--			<h1>Images ranking</h1>-->
+<!--<ol>-->
+<!--    {% for image in most_viewed %}-->
+<!--        <li>-->
+<!--            <a href="{{ image.get_absolute_url }}">-->
+<!--                {{ image.title }}-->
+<!--            </a>-->
+<!--        </li>-->
+<!--    {% endfor %}-->
+<!--</ol>-->
+		<div class="col-lg-12">
+	     <a href="#list-ajax-div"><h4>مشاهده همه</h4></a>
 		</div>
 	   </div>
 
 	   <div class="row top-row">
+    {% for image in most_viewed %}
+			<div class="col-lg-3">
+			 <div class="tr-section">
+				<div class="tr-post">
+				 <div class="entry-header">
+					<div class="entry-thumbnail">
+					 <a href="{{ image.get_absolute_url }}"><img class="{{image.filter }} img-fluid" src="{{ image.image.url }}" alt="Image"></a>
+					</div><!-- /entry-thumbnail -->
+					 </div><!-- /entry-header -->
 
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/30.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/2.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Alex Grantte</h4>
-		     <span>@alex</span>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>
-		   </div><!-- /.post-content -->
-		  </div><!-- /.tr-post -->
-	     </div><!-- /.tr-post -->
-		</div><!-- /col-sm-3 -->
 
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/27.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/3.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Anna Morgan</h4>
-		     <span>@anna</span>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>
-		   </div><!-- /.post-content -->
-		  </div><!-- /.tr-post -->
-	     </div><!-- /.tr-post -->
-		</div><!-- /col-sm-3 -->
+				 <div class="post-content">
+					<div class="author-post text-center">
+				 	{% if image.user.profile.photo %}
+            {% with ph=image.user.profile.photo %}
+								<a href="{{ user.get_absolute_url }}"><img class="img-fluid rounded-circle" src="{{ph.url}}" alt="Image"></a>
+            {% endwith %}
+          {% else %}
+						<a href="#"><img class="img-fluid rounded-circle" src="/static/img/person.jpg" alt="Image"></a>
+					{% endif %}
+					</div><!-- /author -->
 
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/28.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/6.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Sean Coleman</h4>
-		     <span>@sean</span>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>
-		   </div><!-- /.post-content -->
-		  </div><!-- /.tr-post -->
-	     </div><!-- /.tr-post -->
-		</div><!-- /col-sm-3 -->
 
-	    <div class="col-lg-3">
-		 <div class="tr-section">
-		  <div class="tr-post">
-		   <div class="entry-header">
-		    <div class="entry-thumbnail">
-		     <a href="#"><img class="img-fluid" src="assets/img/posts/31.jpg" alt="Image"></a>
-		    </div><!-- /entry-thumbnail -->
-	       </div><!-- /entry-header -->
-		   <div class="post-content">
-		    <div class="author-post text-center">
-		     <a href="#"><img class="img-fluid rounded-circle" src="assets/img/users/15.jpg" alt="Image"></a>
-		    </div><!-- /author -->
-			<div class="card-content">
-			 <h4>Vanessa Wells</h4>
-		     <span>@vanessa</span>
-			</div>
-			 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow
-			 </a>
-		   </div><!-- /.post-content -->
-		  </div><!-- /.tr-post -->
-	     </div><!-- /.tr-post -->
-		</div><!-- /col-sm-3 -->
-
-	   </div>
+				<div class="card-content">
+					{% if image.user.profile.first_name %}
+						<h4>{{image.user.profile.first_name}}</h4>
+					{% else %}
+						<h4>ناشناس</h4>
+					{% endif %}
+					 <span>{{image.user.username}}@</span>
+				</div>
+            <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un{% endif %}follow" class="kafe-btn kafe-btn-mint-small full-width follow" >
+                {% if request.user not in user.followers.all %}
+                    Follow
+                {% else %}
+                    Unfollow
+                {% endif %}
+            </a>
+<!--				 <a href="" class="kafe-btn kafe-btn-mint-small full-width"> Follow-->
+<!--				 </a>-->
+				 </div><!-- /.post-content -->
+				</div><!-- /.tr-post -->
+				 </div><!-- /.tr-post -->
+			</div><!-- /col-sm-3 -->
+    {% endfor %}
+		 </div>
 
 	   <div class="row one-row">
 	    <div class="col-lg-12">
-	     <h4>Explore Section</h4>
+	     <h4><input type="text" id="input_search_query1" placeholder="جستجو...." name="query"></h4>
+
 		</div>
 	   </div>
 
 
-      <div class="search-container">
-          <input type="text" id="input_search_query1" placeholder="جستجو...." name="query">
-          <button id="input_search_query" type="submit"><i class="fa fa-search"></i></button>
-      </div>
+<!--      <div class="row search-container one-row">-->
+<!--				<div class="col-lg-12">-->
+<!--					<input type="text" id="input_search_query1" placeholder="جستجو...." name="query">-->
+<!--          <button id="input_search_query" type="submit"><i class="fa fa-search"></i></button>-->
+<!--				</div>-->
+<!--      </div>-->
 
 	   <div id="list-ajax-div" class="row">
 			 {% include "images/image/list_ajax.html" %}
@@ -151,6 +117,7 @@
         var margin = $(document).height() - $(window).height() - 200;
         if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
 						if(queryU == null){
+							console.log('helllllll')
 							block_request = true;
 							page += 1;
 							$.get('?page=' + page, function(data) {
@@ -272,12 +239,13 @@
 
     $( document ).ajaxStop(function() {
 			if (queryU){
+				console.log('helllllll2222')
 				$(window).scroll(function() {
 					var margin = $(document).height() - $(window).height() - 200;
 					if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
 							block_request = true;
 							page += 1;
-							$.get('?query='+queryU+'&page=' + page, function(data) {
+							$.get('/images/search?query='+queryU+'&page=' + page, function(data) {
 								if(data == '') {
 										empty_page = true;
 								}
@@ -330,7 +298,8 @@
 
 
 
-  $("#input_search_query").on('click',function(){
+  $("#input_search_query1").on('change',function(){
+		console.log('dddddddddd')
     var query=$('#input_search_query1').val();
 		page=1
     console.log('sss')
@@ -343,11 +312,36 @@
 			block_request = false;
 			queryU = query;
 			$.get('/images/search?query='+query, function(data) {
-			$( "#list-ajax-div1" ).empty();
-			block_request = false;
-			$('#list-ajax-div1').append(data);
+				$( "#list-ajax-div1" ).empty();
+				block_request = false;
+				$('#list-ajax-div1').append(data);
 			});
 		}
 
   });
+
+    $('a.follow').click(function(e){
+        var ddd=$(this);
+        $.post('{% url "user_follow" %}',
+        {
+            id: $(this).data('id'),
+            action: $(this).data('action')
+        },
+        function(data){
+            if (data['status'] == 'ok') {
+                var previous_action = ddd.data('action');
+                // toggle data-action
+                $(ddd).data('action',
+                    previous_action == 'follow' ? 'unfollow' : 'follow');
+                // toggle link text
+                ddd.text(
+                    previous_action == 'follow' ? 'Unfollow' : 'Follow');
+                // update total followers
+                var previous_followers = parseInt($('span.count .total').text());
+                $('span.count .total').text(previous_action == 'follow' ?
+                    previous_followers + 1 : previous_followers - 1);
+            }
+        }
+    );
+});
 {% endblock %}

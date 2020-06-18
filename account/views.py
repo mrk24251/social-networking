@@ -11,6 +11,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
 from .models import Contact
+from images.models import Image
 from actions.utils import create_action
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from actions.models import Action
@@ -44,10 +45,14 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
-
+    images = Image.objects.all()[:4]
+    user_followin = request.user.following.all()
+    user_following = user_followin.annotate(follow_user=Count('following')).order_by('-follow_user')
     return render(request,
         'account/dashboard.html',
-        {'section': 'dashboard',})
+        {'section': 'dashboard',
+         'user_following':user_following,
+         'images':images})
 
 @login_required
 def notification(request):

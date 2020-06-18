@@ -132,6 +132,13 @@ def image_list(request):
     images = Image.objects.all()
     paginator = Paginator(images, 9)
     page = request.GET.get('page')
+    image_ranking = r.zrange('image_ranking', 0, -1,
+                             desc=True)[:4]
+    image_ranking_ids = [int(id) for id in image_ranking]
+    # get most viewed images
+    most_viewed = list(Image.objects.filter(
+        id__in=image_ranking_ids))
+    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
 
     try:
         images = paginator.page(page)
@@ -148,12 +155,14 @@ def image_list(request):
     if request.is_ajax():
         return render(request,
               'images/image/list_ajax.html',
-              {'section': 'images', 'images': images})
+              {'section': 'images',
+               'images': images})
 
     return render(request,
                   'images/image/list.html',
                   {'section': 'images',
-                    'images': images
+                    'images': images,
+                    'most_viewed': most_viewed
                    })
 
 @login_required
@@ -189,7 +198,7 @@ def image_search(request):
                 rank=SearchRank(search_vector, search_query)
             ).filter(rank__gte=0.1).order_by('-rank')
 
-            paginator = Paginator(results, 4)
+            paginator = Paginator(results, 9)
             page = request.GET.get('page')
 
             try:

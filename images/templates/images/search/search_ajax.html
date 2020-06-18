@@ -5,38 +5,43 @@
 <!--  {% empty %}-->
 <!--  <p>There are no results for your query.</p>-->
 <!--{% endfor %}-->
-
-{% for image in results %}
-    <div class="col-xl-4">
-      {% thumbnail image.image "300x300" crop="100%" as im %}
-      <a href="{{ image.get_absolute_url }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-filter="{{image.filter }}" data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
-         <div data-toggle="modal" data-target="#exampleModal" class=" {{image.filter }} explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
-                  background-size: cover;
-                      background-position: center center;
-                      -webkit-background-size: cover;
-                      -moz-background-size: cover;
-                      -o-background-size: cover;">
-          <div class="explore-top">
-          {% with total_likes=image.users_like.count %}
-           <div class="explore-like"><i class="fa fa-heart"></i> <span>{{ total_likes }}</span></div>
-          {% endwith %}
-           <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-          </div>
-           {% if image.user.profile.photo %}
-            {% with ph=image.user.profile.photo %}
-               <div class="explore-body">
-                 <div class=""><img class="img-circle" src="{{ph.url}}" alt="user"></div>
-               </div>
+{% if results %}
+  {% for image in results %}
+      <div class="col-xl-4">
+        {% thumbnail image.image "300x300" crop="100%" as im %}
+        <a href="{{ image.get_absolute_url }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-filter="{{image.filter }}" data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
+           <div data-toggle="modal" data-target="#exampleModal" class=" {{image.filter }} explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
+                    background-size: cover;
+                        background-position: center center;
+                        -webkit-background-size: cover;
+                        -moz-background-size: cover;
+                        -o-background-size: cover;">
+            <div class="explore-top">
+            {% with total_likes=image.users_like.count %}
+             <div class="explore-like"><i class="fa fa-heart"></i> <span>{{ total_likes }}</span></div>
             {% endwith %}
-          {% else %}
-             <div class="explore-body">
-               <div class=""><img class="img-circle" src="/static/img/person.jpg" alt="user"></div>
-             </div>
-          {% endif %}
-         </div>
-     </a>
-      {% endthumbnail %}
-    </div><!--/ col-lg-4 -->
-{% endfor %}
+             <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+            </div>
+             {% if image.user.profile.photo %}
+              {% with ph=image.user.profile.photo %}
+                 <div class="explore-body">
+                   <div class=""><img class="img-circle" src="{{ph.url}}" alt="user"></div>
+                 </div>
+              {% endwith %}
+            {% else %}
+               <div class="explore-body">
+                 <div class=""><img class="img-circle" src="/static/img/person.jpg" alt="user"></div>
+               </div>
+            {% endif %}
+           </div>
+       </a>
+        {% endthumbnail %}
+      </div><!--/ col-lg-4 -->
+  {% endfor %}
+{% else %}
+  <div class="col-xl-4">
+    <span>نتیجه ای یافت نشد</span>
+  </div>
+{% endif %}
 
 {% include "account/ChatModal/modal.html" %}
