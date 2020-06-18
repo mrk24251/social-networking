@@ -46,12 +46,38 @@ def user_login(request):
 @login_required
 def dashboard(request):
     images = Image.objects.all()[:4]
-    user_followin = request.user.following.all()
-    user_following = user_followin.annotate(follow_user=Count('following')).order_by('-follow_user')
+    user = request.user
+    user_followin = user.following.all()
+    following_image = set()
+    for user in user_followin:
+        for image in user.images_created.all():
+            following_image.add(image)
+
+    ordered_following_images=following_image
+    paginator = Paginator(list(ordered_following_images)[::-1], 4)
+    page = request.GET.get('page')
+    try:
+        ordered_following_images = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        ordered_following_images = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            # return an empty page
+            return HttpResponse('')
+            # If page is out of range deliver last page of results
+        ordered_following_images = paginator.page(paginator.num_pages)
+
+    if request.is_ajax():
+        return render(request,
+                      'account/dashboard_ajax.html',
+                      {'section': 'dashboard', 'following_image':ordered_following_images})
+
     return render(request,
         'account/dashboard.html',
         {'section': 'dashboard',
-         'user_following':user_following,
+         'following_image':ordered_following_images,
          'images':images})
 
 @login_required

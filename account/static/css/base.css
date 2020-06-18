@@ -190,7 +190,7 @@ a:hover {
     color:#00a74f;
 }
 
-h1, h2, h3, h4, h5 , h6 { font-family: 'Muli', sans-serif; font-weight:normal; }
+h1, h2, h3, h4, h5 , h6 { font-family: 'Vazir', sans-serif; font-weight:normal; }
 
 h1 {
     padding:0 0 10px 0;
@@ -823,6 +823,9 @@ img.user-detail {
     background: #f4f4f4;
     padding: 40px 0px;
 }
+.dropdown, .dropup {
+    position: relative;
+}
 #input_search_query1{
     float:right !important;
     background: #f4f4f4;
@@ -860,8 +863,30 @@ img.user-detail {
     top: -28px;
     color: #fff !important;
 }
+.cardbox .btn-flat.btn-flat-icon {
+    border-radius: 50%;
+    font-size: 24px;
+    height: 32px;
+    width: 32px;
+    padding: 0;
+    overflow: hidden;
+    color: inherit !important;
+    background-color:rgb(239, 239, 239);
+    border: 1px solid transparent;
+}
+.cardbox .cardbox-heading {
+    padding: 16px;
+    margin: 0;
+}
+.cardbox {
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+    margin-bottom: 20px;
+    padding: 0px !important;
+}
 .pull-right {
-    float: right!important;
+    float: left!important;
 }
 #UploadButton{
     float:left;
@@ -943,6 +968,30 @@ img.user-detail {
 .list-group {
     padding-left: 0;
     margin-bottom: 20px;
+}
+.media img{
+  width: 48px !important;
+  height: 48px !important;
+  padding: 2px;
+  border: 2px solid #f4f4f4;
+}
+.media-body {
+  -ms-flex: 1;
+  flex: 1;
+  padding: .4rem !important;
+  direction: ltr;
+}
+.media-body p{
+  font-family: 'Vazir', serif;
+  font-weight: 700 !important;
+  font-size: 14px;
+  color: #88898a;
+}
+.media-body small span{
+  font-family: 'Abhaya Libre', serif;
+  font-size: 14px;
+  color: #aaa;
+  direction:ltr;
 }
 .followers-box .followers-body .list-group .list-group-item {
     font-size: .8125em;
