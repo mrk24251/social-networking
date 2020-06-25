@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block title %}Dashboard{% endblock %}
 
@@ -25,7 +26,6 @@
 	  <div class="container-fluid">
 	   <div class="row">
 	    <div class="col-lg-3">
-
          {% for image in images %}
          <a href="#">
              <div class="storybox" style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('{{image.image.url}}') no-repeat;
@@ -165,24 +165,54 @@
 {% endblock %}
 
 {% block domready %}
-    var page = 1;
-    var empty_page = false;
-    var block_request = false;
-    $(window).scroll(function() {
-        var margin = $(document).height() - $(window).height() - 200;
-        if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
-						block_request = true;
-            page += 1;
-						console.log('page',page)
-            $.get('?page=' + page, function(data) {
-                if(data == '') {
-                    empty_page = true;
-                }
-                else {
-                    block_request = false;
-                    $('#image_following').append(data);
-                }
-            });
-        }
-    });
+var page = 1;
+var empty_page = false;
+var block_request = false;
+$(window).scroll(function() {
+		var margin = $(document).height() - $(window).height() - 200;
+		if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+				block_request = true;
+				page += 1;
+				console.log('page',page)
+				$.get('?page=' + page, function(data) {
+						if(data == '') {
+								empty_page = true;
+						}
+						else {
+								block_request = false;
+								$('#image_following').append(data);
+						}
+				});
+		}
+});
+
+$(".dropdown-item-first").on('click',function(e){
+	console.log("ggggggg");
+	$(this).parent().parent().parent().parent().css({"display":"none"});
+	var ajax_url=$(this).data('url');
+	$.ajax({
+    url: ajax_url,
+    type: 'PUT',
+    success: function(data) {
+        console.log("hhhhhh");
+    }
+	});
+});
+
+$(".dropdown-item-second").on('click',function(e){
+		var ddd=$(this);
+		console.log('ddddddddddddddddd');
+		$.post('{% url "user_follow" %}',
+		{
+				id: $(this).data('id'),
+				action: $(this).data('action')
+		},
+		function(data){
+				if (data['status'] == 'ok') {
+						location.reload();
+				}
+		}
+	);
+});
+
 {% endblock %}

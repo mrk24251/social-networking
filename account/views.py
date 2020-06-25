@@ -45,6 +45,7 @@ def user_login(request):
 
 @login_required
 def dashboard(request):
+
     images = Image.objects.all()[:4]
     user = request.user
     user_followin = user.following.all()

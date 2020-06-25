@@ -96,6 +96,10 @@ def image_detail(request, id, slug):
                 return JsonResponse({'status': 'ok'})
             return JsonResponse({'status': 'ko'})
 
+        if request.method == 'PUT':
+            Image.objects.filter(id=id).update(display='none')
+            return JsonResponse({'status': 'ok'})
+
         return render(request,
                       'images/image/detail_ajax.html',
                       {'section': 'images',

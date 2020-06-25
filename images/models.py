@@ -23,6 +23,7 @@ class Image(models.Model):
                                               default=0)
 
     filter = models.CharField(max_length=60,default="")
+    display = models.CharField(max_length=60, default="block")
 
     def __str__(self):
         return self.title
