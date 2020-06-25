@@ -12,11 +12,17 @@ from django.views.decorators.http import require_POST
 from common.decorators import ajax_required
 from .models import Contact
 from images.models import Image
+import redis
+from django.conf import settings
 from actions.utils import create_action
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from actions.models import Action
 from django.db.models import Count
 
+
+r = redis.StrictRedis(host=settings.REDIS_HOST,
+    port=settings.REDIS_PORT,
+    db=settings.REDIS_DB)
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -47,12 +53,21 @@ def user_login(request):
 def dashboard(request):
 
     images = Image.objects.all()[:4]
+    image_ranking = r.zrange('image_ranking', 0, -1,
+                             desc=True)[:6]
+    image_ranking_ids = [int(id) for id in image_ranking]
+    most_viewed = list(Image.objects.filter(
+        id__in=image_ranking_ids))
+    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
     user = request.user
     user_followin = user.following.all()
+    user_following = user_followin.annotate(follow_user=Count('following')).order_by('-follow_user')[:7]
     following_image = set()
+
     for user in user_followin:
-        for image in user.images_created.all():
-            following_image.add(image)
+        if user != request.user:
+            for image in user.images_created.all():
+                following_image.add(image)
 
     ordered_following_images=following_image
     paginator = Paginator(list(ordered_following_images)[::-1], 4)
@@ -79,7 +94,10 @@ def dashboard(request):
         'account/dashboard.html',
         {'section': 'dashboard',
          'following_image':ordered_following_images,
-         'images':images})
+         'images':images,
+         'user_following':user_following,
+         'most_viewed': most_viewed,
+         'current_user':request.user})
 
 @login_required
 def notification(request):

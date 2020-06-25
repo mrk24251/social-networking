@@ -838,7 +838,6 @@ img.user-detail {
     width:60%
 }
 #dashboard_image_list{
-    height:850px !important;
     width:100%;
 }
 .explorebox {
@@ -1606,7 +1605,7 @@ textarea{
  margin: 0px 0px 0px 0px!important;
 }
 .trending-box img{
- margin-bottom: 0px;
+ margin-bottom: 10px;
 }
 .trending-box h4{
   font-family: 'Vazir', serif;
@@ -1617,6 +1616,84 @@ textarea{
 @media (max-width: 768px){
 	.trending-box img{
 	 margin-bottom: 10px;
+	 width: -webkit-fill-available;
 	}
 }
+.bookmark{
+    padding-right: 15px;
+    padding-left: 15px;
+}
+.bookmark_button{
+    text-align:center !important;
+}
+.following_image_alert{
+    color: #88898a;
+}
+#image_following{
+    text-align:center;
+}
 
+/* ==========================================================================
+   Suggestion Box Styles
+   ========================================================================== */
+.suggestion-box {
+  float: right;
+  width: 100%;
+  background-color: #fff;
+  border-right: 1px solid #e5e5e5;
+  border-left: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 5px 25px 0 rgba(123,123,123,.15);
+}
+.suggestion-box .suggestions-list {
+  float: right;
+  width: 100%;
+  padding: 17px 0 10px 0;
+}
+.suggestion-box .suggestion-body {
+  float: right;
+  width: 100%;
+  padding: 10px 20px;
+}
+.suggestion-box .suggestion-body img {
+  width: 37px;
+  height: 37px;
+  float: right;
+  padding: 2px;
+  border: 2px solid #f4f4f4;
+}
+.suggestion-box .name-box {
+  float: right;
+  padding-right: 10px;
+  position: relative;
+  top: -3px;
+  padding-top: 0px !important;
+}
+.suggestion-box .name-box h4 {
+ font-family: 'Vazir', serif;
+ color: #88898a;
+ font-size: 14px;
+ font-weight: 700;
+ margin-bottom: 4px;
+}
+.suggestion-box .name-box span {
+ font-family: 'Vazir', serif;
+ font-size: 14px;
+ color: #aaa;
+}
+.suggestion-box .suggestion-body> span {
+  float: left;
+  margin-top: 4px;
+  position: relative;
+  top: -3px;
+}
+.suggestion-box .suggestion-body > span i {
+  color: #b2b2b2;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #e5e5e5;
+  text-align: center;
+  line-height: 30px;
+  font-weight: 700;
+  cursor: pointer;
+}
