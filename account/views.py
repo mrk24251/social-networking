@@ -63,6 +63,7 @@ def dashboard(request):
     user_followin = user.following.all()
     user_following = user_followin.annotate(follow_user=Count('following')).order_by('-follow_user')[:7]
     following_image = set()
+    suggested_user = User.objects.filter(is_active=True).annotate(follower=Count('followers')).order_by('-follower')[:6]
 
     for user in user_followin:
         if user != request.user:
@@ -97,7 +98,8 @@ def dashboard(request):
          'images':images,
          'user_following':user_following,
          'most_viewed': most_viewed,
-         'current_user':request.user})
+         'current_user':request.user,
+         'suggested_user':suggested_user})
 
 @login_required
 def notification(request):
@@ -222,10 +224,21 @@ def user_detail(request, username):
     user = get_object_or_404(User,
     username=username,
         is_active=True)
+    image_ranking = r.zrange('image_ranking', 0, -1,
+                             desc=True)[:6]
+    image_ranking_ids = [int(id) for id in image_ranking]
+    most_viewed = list(Image.objects.filter(
+        id__in=image_ranking_ids))
+    most_viewed.sort(key=lambda x: image_ranking_ids.index(x.id))
+    suggested_user = User.objects.filter(is_active=True).annotate(follower=Count('followers')).order_by('-follower')[:6]
+
     return render(request,
         'account/user/detail.html',
         {'section': 'people',
-        'user': user})
+        'user': user,
+        'current_user':request.user,
+        'suggested_user':suggested_user,
+         'most_viewed':most_viewed})
 
 @ajax_required
 @require_POST
