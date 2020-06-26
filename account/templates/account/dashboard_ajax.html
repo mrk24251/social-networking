@@ -39,7 +39,7 @@
 
 				<div class="cardbox-item">
 					{% thumbnail image.image "300x300" crop="100%" as im %}
-					 <a href="{{ image.get_absolute_url }}" data-toggle="modal">
+					 <a href="{{ image.get_absolute_url }}" data-filter="{{image.filter }}" class="user_photo" data-slug={{image.slug}} data-id={{image.id}} data-comment={{image.comments.count}} data-like={{image.users_like.count}} data-toggle="modal" data-url={{im.url}} data-target="#exampleModal">
 						<img class="{{image.filter}} img-responsive" id="dashboard_image_list" src="{{im.url}}" alt="MaterialImg">
 					 </a>
 					{% endthumbnail %}
@@ -68,6 +68,7 @@
 				</div><!--/ cardbox-like -->
 			</div>
 			{% endfor %}
+		{% include "account/ChatModal/modal.html" %}
 		{% else %}
 			<span class="following_image_alert">هنوز عکسی توسط افراد دنبال شده منتشر نشده است</span>
 		{% endif %}

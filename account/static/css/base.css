@@ -1007,6 +1007,14 @@ img.user-detail {
 .modal-comment{
     margin-left:4px;
 }
+@media (max-width: 992px){
+    .modal-content {
+        border-radius: 0;
+        max-height: 100%;
+        overflow-y: auto;
+    }
+}
+
 .followers-box .followers-body img {
     width: 37px;
     height: 37px;
@@ -1063,6 +1071,7 @@ img.user-detail {
   flex: 1;
   padding: .4rem !important;
   direction: ltr;
+  text-align: right;
 }
 .media-body p{
   font-family: 'Vazir', serif;
@@ -1122,6 +1131,9 @@ img.user-detail {
     padding: 15px;
     direction: ltr;
 }
+.modal-image{
+    text-align:right;
+}
 .modal-image img {
     width: 100% !important;
     height: auto !important;
@@ -1178,6 +1190,9 @@ button.close {
     padding: 0;
     position: absolute;
     width: 1px;
+}
+.modal-meta-top{
+    text-align:right;
 }
 .modal-meta-top .img-poster a {
     font-family: 'Vazir', serif;
@@ -1260,6 +1275,7 @@ li p {
     margin: 0px !important;
     font-size: 0px !important;
     direction:rtl;
+        text-align: right;
 }
 .modal-meta-bottom li span.modal-one {
     margin-left: 10px;

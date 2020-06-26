@@ -4,23 +4,6 @@
 {% block title %}Dashboard{% endblock %}
 
 {% block content %}
-<!--<h1>Dashboard</h1>-->
-
-<!--{% with total_images_created=request.user.images_created.count %}-->
-<!--    <p>Welcome to your dashboard. You have bookmarked {{ total_images_created }} image{{ total_images_created|pluralize }}.</p>-->
-<!--{% endwith %}-->
-
-<!--<p>Drag the following button to your bookmarks toolbar to bookmark images from other websites → <a href="javascript:{% include "bookmarklet_launcher.js" %}" class="button">Bookmark it</a></p>-->
-<!--<p>You can also <a href="{% url "edit" %}">edit your profile</a> or <a href="{% url "password_change" %}">change your password</a>.</p>-->
-
-<!--<p>Welcome to your dashboard.You can <a href="{% url "edit" %}">edit your profile</a> or <a href="{% url "password_change" %}">change your password</a>.</p>-->
-
-<!--<h2>What's happening</h2>-->
-<!--<div id="action-list">-->
-<!--    {% for action in actions %}-->
-<!--        {% include "actions/action/detail.html" %}-->
-<!--    {% endfor %}-->
-<!--</div>-->
 
 <section class="newsfeed">
 	  <div class="container-fluid">
@@ -177,5 +160,116 @@ $(".dropdown-item-second").on('click',function(e){
 		}
 	);
 });
+function updateComment(){
+	var idd1=localStorage.getItem("id", idd);
+	var slugg1=localStorage.getItem("slug", slugg);
+	console.log('slugg1',slugg1)
+	console.log('idd1',idd1)
+
+	$.get("/images/detail/"+ idd1 + "/" + slugg1 + "/", function(data) {
+		$( ".img-comment-list" ).empty();
+		$('#comment-list-modal').append(data);
+	});
+}
+
+$( document ).ajaxStop(function() {
+
+	$('#building').click(function(e){
+			var ddd=$('#comment_textarea_id');
+			slugg =localStorage.getItem("slug");
+			idd= localStorage.getItem("id");
+					$.post("/images/detail/"+ idd + "/" + slugg + "/",
+				{
+					body: ddd.val(),
+				},
+				function(data){
+					$('#comment-list-modal').append(data);
+				}
+				);
+			$( "#comment_textarea_id" ).val('');
+
+});
+
+$(".user_photo").on('click',function(e){
+	var ddd=$(this);
+	var slugg=ddd.data('slug')
+	localStorage.setItem("slug", slugg);
+	var idd=ddd.data('id')
+	localStorage.setItem("id", idd);
+	$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+		$( ".img-comment-list" ).empty();
+		$('#comment-list-modal').append(data);
+	});
+	var element = $(".img-responsive-big");
+<!--		filters=localStorage.getItem("filters");-->
+	$(".img-responsive-big").attr("src", $(this).data('url'));
+	$(".modal-one").text($(this).data('like'));
+	$(".modal-two").text($(this).data('comment'));
+	var filters = $(".img-responsive-big").attr('class').split(' ').pop();
+	console.log('filters');
+	element.removeClass(filters);
+	var filter=$(this).data('filter');
+	element.addClass(filter);
+	console.log('filter',filter);
+});
+
+function updateComment(){
+	var idd1=localStorage.getItem("id", idd);
+	var slugg1=localStorage.getItem("slug", slugg);
+	console.log('slugg1',slugg1)
+	console.log('idd1',idd1)
+
+	$.get("/images/detail/"+ idd1 + "/" + slugg1 + "/", function(data) {
+		$( ".img-comment-list" ).empty();
+		$('#comment-list-modal').append(data);
+	});
+}
+
+	})
+
+
+	$('#building').click(function(e){
+			var ddd=$('#comment_textarea_id');
+			slugg =localStorage.getItem("slug");
+			idd= localStorage.getItem("id");
+					$.post("/images/detail/"+ idd + "/" + slugg + "/",
+				{
+					body: ddd.val(),
+				},
+				function(data){
+					$('#comment-list-modal').append(data);
+				}
+				);
+			$( "#comment_textarea_id" ).val('');
+
+});
+$(".user_photo").on('click',function(){
+	var ddd=$(this);
+	var slugg=ddd.data('slug')
+	localStorage.setItem("slug", slugg);
+	var idd=ddd.data('id')
+	localStorage.setItem("id", idd);
+	$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+		$( ".img-comment-list" ).empty();
+		$('#comment-list-modal').append(data);
+	});
+	setInterval(function(){
+		updateComment()
+	}, 500);
+
+	var element = $(".img-responsive-big");
+<!--		filters=localStorage.getItem("filters");-->
+	$(".img-responsive-big").attr("src", $(this).data('url'));
+	console.log('ddddd',$(this).data('url'));
+	$(".modal-one").text($(this).data('like'));
+	$(".modal-two").text($(this).data('comment'));
+	var filters = $(".img-responsive-big").attr('class').split(' ').pop();
+	console.log('filters');
+	element.removeClass(filters);
+	var filter=$(this).data('filter');
+	element.addClass(filter);
+	console.log('filter',filter);
+});
+
 
 {% endblock %}
