@@ -60,3 +60,7 @@ class ProfileEditForm(forms.ModelForm):
         widgets = {
             'date_of_birth': DateInput(),
         }
+
+
+class SearchUserForm(forms.Form):
+    username = forms.CharField()

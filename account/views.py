@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login
-from .forms import LoginForm, UserRegistrationForm,UserEditForm, ProfileEditForm
+from .forms import LoginForm, UserRegistrationForm,UserEditForm, ProfileEditForm, SearchUserForm
 from .models import Profile
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -213,11 +213,35 @@ def edit(request):
 
 @login_required
 def user_list(request):
+    form = SearchUserForm()
     users = User.objects.filter(is_active=True)
+
+    if 'username' in request.GET:
+        form = SearchUserForm(request.GET)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            users = User.objects.filter(username__startswith=username)
+            paginator = Paginator(users, 9)
+            page = request.GET.get('page')
+
+            try:
+                users = paginator.page(page)
+            except PageNotAnInteger:
+                # If page is not an integer deliver the first page
+                users = paginator.page(1)
+            except EmptyPage:
+                if request.is_ajax():
+                    # If the request is AJAX and the page is out of range
+                    # return an empty page
+                    return HttpResponse('')
+                    # If page is out of range deliver last page of results
+                users = paginator.page(paginator.num_pages)
+
     return render(request,
         'account/user/list.html',
         {'section': 'people',
-        'users': users})
+        'users': users,
+         'form':form})
 
 @login_required
 def user_detail(request, username):
