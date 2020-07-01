@@ -222,8 +222,30 @@ def user_list(request):
 @login_required
 def user_detail(request, username):
     user = get_object_or_404(User,
-    username=username,
+        username=username,
         is_active=True)
+
+    images = user.images_created.all()
+    paginator = Paginator(images, 6)
+    page = request.GET.get('page')
+
+    try:
+        images = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        images = paginator.page(1)
+    except EmptyPage:
+        if request.is_ajax():
+            # If the request is AJAX and the page is out of range
+            # return an empty page
+            return HttpResponse('')
+            # If page is out of range deliver last page of results
+        images = paginator.page(paginator.num_pages)
+    if request.is_ajax():
+        return render(request,
+                      'account/user/detail_ajax.html',
+                      {'section': 'profile', 'images': images})
+
     image_ranking = r.zrange('image_ranking', 0, -1,
                              desc=True)[:6]
     image_ranking_ids = [int(id) for id in image_ranking]
@@ -238,7 +260,8 @@ def user_detail(request, username):
         'user': user,
         'current_user':request.user,
         'suggested_user':suggested_user,
-         'most_viewed':most_viewed})
+        'most_viewed':most_viewed,
+        'images': images})
 
 @ajax_required
 @require_POST

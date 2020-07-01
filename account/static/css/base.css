@@ -821,7 +821,6 @@ img.user-detail {
    ========================================================================== */
 .newsfeed {
     background: #f4f4f4;
-    padding: 40px 0px;
     direction: ltr;
 }
 .m-0{
@@ -839,7 +838,8 @@ img.user-detail {
 #input_search_query1{
     float:right !important;
     background: #f4f4f4;
-    width:60%
+    width:60%;
+    direction: rtl;
 }
 #dashboard_image_list{
     width:100%;
@@ -1648,6 +1648,12 @@ textarea{
 }
 .following_image_alert{
     color: #88898a;
+    direction: rtl;
+    margin: auto;
+    margin-top:35px;
+    text-align: center;
+    font-family: Nastaliq;
+    font-size: 30px;
 }
 #image_following{
     text-align:center;
@@ -1820,3 +1826,7 @@ textarea{
   height: 289px;
 }
 
+#people_follow_button{
+    text-align:center;
+    margin:auto;
+}

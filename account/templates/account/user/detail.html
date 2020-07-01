@@ -10,7 +10,7 @@
 	   <div class="row">
 
 		<div class="col-lg-3">
-         <aside id="leftsidebar" class="sidebar">
+		 <aside id="leftsidebar" class="sidebar">
 		  <ul class="list">
            <li>
 			<div class="user-info">
@@ -28,10 +28,21 @@
 					</a>
 			 	{% endif %}
 
+
 			 </div>
 		     <div class="detail">
 			  <h4>{{ user.get_full_name }}</h4>
 			  <small>{{ user.username }}@</small>
+			 </div>
+
+			 <div class="row">
+				 <a href="#" id="people_follow_button" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un{% endif %}follow" class="kafe-btn kafe-btn-mint-small follow">
+					{% if request.user not in user.followers.all %}
+				 		دنیال کردن
+			 		{% else %}
+						 دنبال شده
+          {% endif %}
+      	</a>
 			 </div>
 			 <div class="row">
 <!--			  <div class="col-12">-->
@@ -56,148 +67,8 @@
 
 		<div class="col-lg-6" style="background: #fff;">
 
-		 <div class="row">
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/6.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>312</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/9.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>624</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		 </div><!--/ row -->
-
-		 <div class="row">
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/32.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>12</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/30.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1499</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		 </div><!--/ row -->
-
-		 <div class="row">
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/19.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1742</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/8.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>1269</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		 </div><!--/ row -->
-
-		 <div class="row">
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/36.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>12456</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
-		  <div class="col-lg-6">
-			 <a href="#myModal" data-toggle="modal">
-			 <div class="explorebox" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('assets/img/posts/25.jpg') no-repeat;
-					  background-size: cover;
-					  background-position: center center;
-					  -webkit-background-size: cover;
-					  -moz-background-size: cover;
-					  -o-background-size: cover;">
-			  <div class="explore-top">
-			   <div class="explore-like"><i class="fa fa-heart"></i> <span>10945</span></div>
-			   <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
-			  </div>
-			 </div>
-			 </a>
-		  </div>
-
+		 <div id="detail_image_detail" class= "row">
+			{% include "account/user/detail_ajax.html" %}
 		 </div><!--/ row -->
 
 		</div>
@@ -258,29 +129,177 @@
 	 </section>
 {% endblock %}
 
+{% block domjs %}
+	function auto_grow(element) {
+		element.style.height = "0px";
+		element.style.height = (element.scrollHeight)+"px";
+	}
+{% endblock %}
+
 {% block domready %}
-    $('a.follow').click(function(e){
-        e.preventDefault();
-        $.post('{% url "user_follow" %}',
-        {
-            id: $(this).data('id'),
-            action: $(this).data('action')
-        },
-        function(data){
-            if (data['status'] == 'ok') {
-                var previous_action = $('a.follow').data('action');
-                // toggle data-action
-                $('a.follow').data('action',
-                    previous_action == 'follow' ? 'unfollow' : 'follow');
-                // toggle link text
-                $('a.follow').text(
-                    previous_action == 'follow' ? 'Unfollow' : 'Follow');
-                // update total followers
-                var previous_followers = parseInt($('span.count .total').text());
-                $('span.count .total').text(previous_action == 'follow' ?
-                    previous_followers + 1 : previous_followers - 1);
-            }
-        }
-    );
+		var page = 1;
+    var empty_page = false;
+    var block_request = false;
+    $(window).scroll(function() {
+			var margin = $(document).height() - $(window).height() - 200;
+			if ($(window).scrollTop() > margin && empty_page == false && block_request == false) {
+				block_request = true;
+				page += 1;
+				$.get('?page=' + page, function(data) {
+						if(data == '') {
+								empty_page = true;
+						}
+						else {
+								block_request = false;
+								$('#detail_image_detail').append(data);
+						}
+				});
+			}
+    });
+
+	function updateComment(){
+		var idd1=localStorage.getItem("id", idd);
+		var slugg1=localStorage.getItem("slug", slugg);
+		console.log('slugg1',slugg1)
+		console.log('idd1',idd1)
+
+		$.get("/images/detail/"+ idd1 + "/" + slugg1 + "/", function(data) {
+			$( ".img-comment-list" ).empty();
+			$('#comment-list-modal').append(data);
+		});
+	}
+
+	$( document ).ajaxStop(function() {
+
+    $('#building').click(function(e){
+        var ddd=$('#comment_textarea_id');
+				slugg =localStorage.getItem("slug");
+				idd= localStorage.getItem("id");
+						$.post("/images/detail/"+ idd + "/" + slugg + "/",
+					{
+						body: ddd.val(),
+					},
+					function(data){
+						$('#comment-list-modal').append(data);
+					}
+					);
+				$( "#comment_textarea_id" ).val('');
+
+		});
+
+		$(".user_photo").on('click',function(e){
+			var ddd=$(this);
+			var slugg=ddd.data('slug')
+			localStorage.setItem("slug", slugg);
+			var idd=ddd.data('id')
+			localStorage.setItem("id", idd);
+			$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+				$( ".img-comment-list" ).empty();
+				$('#comment-list-modal').append(data);
+			});
+			var element = $(".img-responsive-big");
+	<!--		filters=localStorage.getItem("filters");-->
+			console.log('urrrrrrrrrllll',$(this).data('url'));
+			$(".img-responsive-big").attr("src", $(this).data('url'));
+
+			var user_like=$(this).data('userlike');
+			console.log($(this).data('userlike'));
+			$(".like").text(user_like);
+
+			$(".modal-one").text($(this).data('like'));
+			$(".modal-two").text($(this).data('comment'));
+			var filters = $(".img-responsive-big").attr('class').split(' ').pop();
+			console.log('filters');
+			element.removeClass(filters);
+			var filter=$(this).data('filter');
+			element.addClass(filter);
+			console.log('filter',filter);
+		});
+
+		function updateComment(){
+			var idd1=localStorage.getItem("id", idd);
+			var slugg1=localStorage.getItem("slug", slugg);
+			console.log('slugg1',slugg1)
+			console.log('idd1',idd1)
+
+			$.get("/images/detail/"+ idd1 + "/" + slugg1 + "/", function(data) {
+				$( ".img-comment-list" ).empty();
+				$('#comment-list-modal').append(data);
+			});
+		}
+
+	})
+
+	$('#building').click(function(e){
+			var ddd=$('#comment_textarea_id');
+			slugg =localStorage.getItem("slug");
+			idd= localStorage.getItem("id");
+					$.post("/images/detail/"+ idd + "/" + slugg + "/",
+				{
+					body: ddd.val(),
+				},
+				function(data){
+					$('#comment-list-modal').append(data);
+				}
+				);
+			$( "#comment_textarea_id" ).val('');
+	});
+
+	$(".user_photo").on('click',function(){
+		var ddd=$(this);
+		var slugg=ddd.data('slug')
+		localStorage.setItem("slug", slugg);
+		var idd=ddd.data('id')
+		localStorage.setItem("id", idd);
+		$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+			$( ".img-comment-list" ).empty();
+			$('#comment-list-modal').append(data);
+		});
+		setInterval(function(){
+			updateComment()
+		}, 500);
+
+		var element = $(".img-responsive-big");
+<!--		filters=localStorage.getItem("filters");-->
+		$(".img-responsive-big").attr("src", $(this).data('url'));
+
+		var user_like=$(this).data('userlike');
+		console.log(user_like);
+		$(".like").text(user_like);
+
+		console.log('ddddd',$(this).data('url'));
+		$(".modal-one").text($(this).data('like'));
+		$(".modal-two").text($(this).data('comment'));
+		var filters = $(".img-responsive-big").attr('class').split(' ').pop();
+		console.log('filters');
+		element.removeClass(filters);
+		var filter=$(this).data('filter');
+		element.addClass(filter);
+		console.log('filter',filter);
+	});
+
+	$('a.follow').click(function(e){
+			e.preventDefault();
+			$.post('{% url "user_follow" %}',
+			{
+					id: $(this).data('id'),
+					action: $(this).data('action')
+			},
+			function(data){
+					if (data['status'] == 'ok') {
+							var previous_action = $('a.follow').data('action');
+							// toggle data-action
+							$('a.follow').data('action',
+									previous_action == 'follow' ? 'unfollow' : 'follow');
+							// toggle link text
+							$('a.follow').text(
+									previous_action == 'follow' ? 'دنبال شده' : 'دنبال کردن');
+							// update total followers
+							var previous_followers = parseInt($('span.count .total').text());
+							$('span.count .total').text(previous_action == 'follow' ?
+									previous_followers + 1 : previous_followers - 1);
+					}
+			}
+	);
 });
 {% endblock %}

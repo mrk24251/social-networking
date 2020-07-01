@@ -1,0 +1,33 @@
+{% load thumbnail %}
+{% if images %}
+  {% for image in images %}
+   <div class="col-lg-6">
+     {% thumbnail image.image "330x330" crop="100%" as im %}
+       <a href="{{ image.get_absolute_url }}" data-toggle="modal" data-target="#exampleModal" data-filter="{{image.filter }}" class="user_photo"
+       data-slug={{image.slug}} data-id={{image.id}} data-comment={{image.comments.count}} data-like={{image.users_like.count}}
+       data-url={{im.url}}>
+        <div class="explorebox {{image.filter }}" style="background: linear-gradient( rgba(34,34,34,0.2), rgba(34,34,34,0.2)), url('{{im.url}}') no-repeat;
+             background-size: cover;
+             background-position: center center;
+             -webkit-background-size: cover;
+             -moz-background-size: cover;
+             -o-background-size: cover;">
+         <div class="explore-top">
+          {% with total_likes=image.users_like.count %}
+           <div class="explore-like"><i class="fa fa-heart"></i> <span>{{ total_likes }}</span></div>
+          {% endwith %}
+
+          <div class="explore-circle pull-right"><i class="far fa-bookmark"></i></div>
+         </div>
+        </div>
+       </a>
+     {% endthumbnail %}
+   </div>
+  {% endfor %}
+
+{% else %}
+  <p class="following_image_alert">هنوز پستی ایجاد نشده است.</p>
+{% endif %}
+
+
+{% include "account/ChatModal/modal.html" %}
