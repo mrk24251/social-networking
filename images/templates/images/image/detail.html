@@ -1,38 +1,128 @@
 {% extends "base.html" %}
+{% load thumbnail %}
 
 {% block title %}{{ image.title }}{% endblock %}
 
 {% block content %}
-    <h1>{{ image.title }}</h1>
-    {% load thumbnail %}
-    {% thumbnail image.image "300" as im %}
-    <a href="{{ image.image.url }}">
-    <img src="{{ im.url }}" class="image-detail">
-    </a>
-    {% endthumbnail %}
 
-    {% with total_likes=image.users_like.count users_like=image.users_like.all %}
-        <div class="image-info">
-            <div>
-                <span class="count">
-                    <span class="total">{{ total_likes }}</span>
-                    like{{ total_likes|pluralize }}
-                </span>
-                <span class="count">
-                    {{ total_views }} view{{ total_views|pluralize }}
-                </span>
-                <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">
-                    {% if request.user not in users_like %}
-                        Like
-                    {% else %}
-                        Unlike
-                    {% endif %}
+<section class="single-post">
+	  <div class="container">
+	   <div class="row">
+
+      <div class="modal-dialog">
+       <div class="modal-content">
+        <div class="modal-body">
+
+         <div class="row">
+
+          <div class="col-md-8 modal-image">
+                <a href="{{ image.image.url }}">
+                    <img src="{{ image.image.url }}" class="{{image.filter }} img-responsive img-responsive-big"  alt="Image">
                 </a>
-            </div>
-            {{ image.description|linebreaks }}
-        </div>
+          </div><!--/ col-md-8 -->
 
-    {% endwith %}
+          <div class="col-md-4 modal-meta">
+           <div class="modal-meta-top">
+            <div class="img-poster clearfix">
+             <a href="{{image.user.get_absolute_url}}">
+                {% with user_profile=image.image.user.profile %}
+                {% if user_profile %}
+                    <img class="img-responsive img-circle" src="{{user_profile.photo.url}}" alt="...">
+                {% else %}
+                    <img class="img-responsive img-circle" src="/static/img/person.jpg" alt="...">
+                {% endif %}
+                {% endwith %}
+             </a>
+             <strong><a href="#">{{image.user.first_name}}</a></strong>
+             <span>{{image.created|timesince}} ago</span><br>
+              <a href="#" data-id="{{ image.user.id }}" data-action="{% if request.user in image.user.followers.all %}un{% endif %}follow" class="kafe kafe-btn-mint-small follow" id="{{user.username}}">
+                  {% if request.user not in image.user.followers.all %}
+                    دنبال کردن
+                  {% else %}
+                    دنبال شده
+                  {% endif %}
+              </a>
+            </div><!--/ img-poster -->
+
+            <ul class="img-comment-list">
+             <li>
+              <div class="comment-text">
+                <strong><a href="#">{{image.title}}</a></strong>
+                {% if image.description %}
+                  <p>{{ image.description|linebreaks }}</p>
+                {% else %}
+                  <p>توضیحات داده نشده است.</p>
+                {% endif %}
+<!--                <span class="date sub-text"></span>-->
+              </div>
+             </li><!--/ li -->
+            </ul><!--/ comment-list -->
+
+            <div class="modal-meta-bottom">
+              {% with total_likes=image.users_like.count users_like=image.users_like.all %}
+<!--                <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">-->
+<!--                    {% if request.user not in users_like %}-->
+<!--                        Like-->
+<!--                    {% else %}-->
+<!--                        Unlike-->
+<!--                    {% endif %}-->
+<!--                </a>-->
+              <ul>
+			          <li><a data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like modal-like" href="#">
+                  <i class="fa fa-heart" style="{% if request.user in users_like %}color:rgb(225, 106, 112);{% else %} color:#848484 {% endif %}"></i></a><span class="modal-one"> {{total_likes}}</span> |
+
+                  <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span> {{ image.comments.count }} </span> |
+                  <a class="modal-comment" href="#">
+                    <i class='fas fa-eye'></i>
+                  </a><span> {{ total_views }} </span>
+                </li>
+              </ul>
+              {% endwith %}
+            </div><!--/ modal-meta-bottom -->
+
+           </div><!--/ modal-meta-top -->
+          </div><!--/ col-md-4 -->
+
+         </div><!--/ row -->
+        </div><!--/ modal-body -->
+
+       </div><!--/ modal-content -->
+      </div><!--/ modal-dialog -->
+
+    </div><!--/ modal-dialog -->
+  </div><!--/ modal-dialog -->
+</section>
+
+<!--    <h1>{{ image.title }}</h1>-->
+<!--    {% load thumbnail %}-->
+<!--    {% thumbnail image.image "300" as im %}-->
+<!--    <a href="{{ image.image.url }}">-->
+<!--    <img src="{{ im.url }}" class="image-detail">-->
+<!--    </a>-->
+<!--    {% endthumbnail %}-->
+
+<!--    {% with total_likes=image.users_like.count users_like=image.users_like.all %}-->
+<!--        <div class="image-info">-->
+<!--            <div>-->
+<!--                <span class="count">-->
+<!--                    <span class="total">{{ total_likes }}</span>-->
+<!--                    like{{ total_likes|pluralize }}-->
+<!--                </span>-->
+<!--                <span class="count">-->
+<!--                    {{ total_views }} view{{ total_views|pluralize }}-->
+<!--                </span>-->
+<!--                <a href="#" data-id="{{ image.id }}" data-action="{% if request.user in users_like %}un{% endif %}like" class="like button">-->
+<!--                    {% if request.user not in users_like %}-->
+<!--                        Like-->
+<!--                    {% else %}-->
+<!--                        Unlike-->
+<!--                    {% endif %}-->
+<!--                </a>-->
+<!--            </div>-->
+<!--            {{ image.description|linebreaks }}-->
+<!--        </div>-->
+
+<!--    {% endwith %}-->
 {% endblock %}
 
 {% block domready %}
@@ -48,18 +138,41 @@ $('a.like').click(function(e){
             {
                 var previous_action = $('a.like').data('action');
                 // toggle data-action
+                if ( previous_action == 'like')
+                {
+                  $("a.modal-like i").css("color", "#e16a70");
+                }else{
+                  $("a.modal-like i").css("color", "#848484");
+                };
                 $('a.like').data('action', previous_action == 'like' ?
                     'unlike' : 'like');
-                // toggle link text
-                $('a.like').text(previous_action == 'like' ? 'Unlike' :
-                    'Like');
-                // update total likes
-                var previous_likes = parseInt($('span.count .total').text());
-                $('span.count .total').text(previous_action == 'like' ?
+                var previous_likes = parseInt($('span.modal-one').text());
+                $('span.modal-one').text(previous_action == 'like' ?
                 previous_likes + 1 : previous_likes - 1);
             }
         }
     );
+});
+
+$('a.follow').click(function(e){
+    var ddd=$(this);
+    $.post('{% url "user_follow" %}',
+    {
+        id: $(this).data('id'),
+        action: $(this).data('action')
+    },
+    function(data){
+        if (data['status'] == 'ok') {
+            var previous_action = ddd.data('action');
+            // toggle data-action
+            $(ddd).data('action',
+                previous_action == 'follow' ? 'unfollow' : 'follow');
+            // toggle link text
+            ddd.text(
+                previous_action == 'follow' ? 'دنبال شده' : 'دنبال کردن');
+        }
+    }
+);
 });
 
 {% endblock %}

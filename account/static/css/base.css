@@ -581,7 +581,7 @@ ul.messages li a.close {
     padding:10px 20px;
     margin:20px 10px 0;
 }
-a.like, a.follow { float:left; margin-top:-8px; }
+a.follow { float:left; margin-top:-8px; }
 
 #image-list { overflow:auto; }
 #image-list .image {
@@ -1140,7 +1140,7 @@ img.user-detail {
 }
 .modal-image img {
     width: 100% !important;
-    height: auto !important;
+    height: 100%;
     vertical-align: middle;
 }
 .img-responsive {
@@ -1170,6 +1170,7 @@ button.close {
     margin-bottom: 10px;
     border-bottom: solid 1px #f4f4f4;
     padding-bottom: 5px;
+    direction: rtl;
 }
 .img-comment-list {
     list-style: none;
@@ -1177,6 +1178,36 @@ button.close {
     height: 418px !important;
     overflow-y: scroll;
 }
+
+.modal-meta-top .img-poster img {
+  height: 34px;
+  width: 34px;
+  float: right !important;
+  margin-left: 10px;
+  border: 4px solid #f4f4f4;
+}
+.modal-meta-top .img-poster a{
+  font-family: 'Vazir', serif;
+  font-size: 14px;
+  color: #88898a !important;
+}
+.modal-meta-top .img-poster span {
+  font-family: 'Vazir', serif;
+  color: #aaa;
+  font-size: 8px;
+  vertical-align: middle;
+  direction: ltr;
+  display: inline-block;
+}
+.modal-meta-top .img-poster a.kafe-btn-mint-small {
+  font-family: 'Vazir', serif;
+  margin-right: 0px;
+  color: #fff !important;
+  border-radius: 3px;
+  font-size: 9px;
+}
+
+
 .modal-meta-bottom {
     bottom: 0;
     left: 0;
@@ -1203,16 +1234,12 @@ button.close {
     font-size: 12px;
     color: #88898a !important;
 }
-.modal-meta-top .img-poster span {
-    font-family: 'Vazir, serif;
-    color: #aaa;
-    font-size: 10px;
-}
 .modal-meta-top .img-poster a.kafe-btn-mint-small {
     font-family: 'Vazir', serif;
     margin-right: 0px;
     color: #fff !important;
     border-radius: 3px;
+    float: none;
 }
 .modal-meta-top .img-poster a {
     font-family: 'Vazir', serif;
@@ -1297,7 +1324,7 @@ li p {
 }
 .modal-meta-bottom li a.modal-like i {
     font-size: 12px !important;
-    color: #e16a70 !important;
+    color: #e16a70;
     margin-left: 4px;
     margin-right: 10px;
 }

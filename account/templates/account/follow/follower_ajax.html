@@ -1,48 +1,21 @@
 {% for user in user_followers %}
     <div class="followers-body">
-    {% if user.profile.photo %}
-        <img class="img-responsive img-circle" src="{{user.profile.photo.url}}" alt="">
-    {% else %}
-        <img class="img-responsive img-circle" src="/static/img/person.jpg" alt="Image">
-    {% endif %}
-     <div class="name-box">
-        <a href="{{ user.get_absolute_url }}">
-            {% if user.first_name %}
-                <h4>{{user.first_name}}</h4>
-            {% else %}
-                <h4>ناشناس</h4>
-            {% endif %}
-            <span>{{user.username}}@</span>
-        </a>
-<!--                  <div class="followers-base">-->
-<!--                   <ul class="list-group">-->
-<!--                    <li class="list-group-item full-width">-->
-<!--                     <div class="pull-left" style="margin-right: 20px;">-->
-<!--                      <img src="assets/img/users/1.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <img src="assets/img/users/2.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <img src="assets/img/users/3.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <img src="assets/img/users/4.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <button class="btn btn-add-gray">-->
-<!--                       <i class="fa fa-plus"></i>-->
-<!--                      </button>-->
-<!--                      <span> 14,000 Followers </span>-->
-<!--                     </div>&lt;!&ndash;/ pull-left &ndash;&gt;-->
-<!--                    </li>-->
-<!--                    <li class="list-group-item full-width">-->
-<!--                     <div class="pull-left">-->
-<!--                      <img src="assets/img/users/5.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <img src="assets/img/users/6.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <img src="assets/img/users/7.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <img src="assets/img/users/8.jpg" alt="" class="img-circle max-w-40 ">-->
-<!--                      <button class="btn btn-add-gray">-->
-<!--                       <i class="fa fa-plus"></i>-->
-<!--                      </button>-->
-<!--                      <span> 14,000 Following </span>-->
-<!--                     </div>&lt;!&ndash;/ pull-right &ndash;&gt;-->
-<!--                    </li>&lt;!&ndash;/ list-group-item &ndash;&gt;-->
-<!--                   </ul>-->
-<!--                  </div>&lt;!&ndash;/ followers-base &ndash;&gt;-->
-     </div><!--/ name-box -->
+      {% if user.profile.photo %}
+          <img class="img-responsive img-circle" src="{{user.profile.photo.url}}" alt="">
+      {% else %}
+          <img class="img-responsive img-circle" src="/static/img/person.jpg" alt="Image">
+      {% endif %}
+       <div class="name-box">
+          <a href="{{ user.get_absolute_url }}">
+              {% if user.first_name %}
+                  <h4>{{user.first_name}}</h4>
+              {% else %}
+                  <h4>ناشناس</h4>
+              {% endif %}
+              <span>{{user.username}}@</span>
+          </a>
+       </div><!--/ name-box -->
+
         <span class="ali">
             <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.followers.all %}un{% endif %}follow" class="follow-button kafe-btn kafe-btn-mint-small follow" id="{{user.username}}">
                 {% if request.user not in user.followers.all %}
