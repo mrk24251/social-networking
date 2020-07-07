@@ -209,7 +209,8 @@ def edit(request):
     {'user_form': user_form,
     'profile_form': profile_form,
      'user': request.user,
-     'images': images})
+     'images': images,
+     'section': 'profile'})
 
 @login_required
 def user_list(request):

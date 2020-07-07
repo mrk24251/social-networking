@@ -16,26 +16,63 @@
         <link href="{% static "css/base.css" %}" rel="stylesheet">
     </head>
     {% if request.user.is_authenticated %}
-    <body>
-        <div id="header">
-            <span class="logo">Bookmarks</span>
-            <ul class="menu">
-                <li {% if section == "dashboard" %}class="selected"{% endif %}>
-                    <a href="{% url "dashboard" %}">My dashboard</a>
-                </li>
-                <li {% if section == "images" %}class="selected"{% endif %}>
-                    <a href="{% url "images:list" %}">Images</a>
-                </li>
-                <li {% if section == "people" %}class="selected"{% endif %}>
-                    <a href="{% url "user_list" %}">People</a>
-                </li>
-            </ul>
+<!--    <body>-->
+<!--        <div id="header">-->
+<!--            <span class="logo">Bookmarks</span>-->
+<!--            <ul class="menu">-->
+<!--                <li {% if section == "dashboard" %}class="selected"{% endif %}>-->
+<!--                    <a href="{% url "dashboard" %}">My dashboard</a>-->
+<!--                </li>-->
+<!--                <li {% if section == "images" %}class="selected"{% endif %}>-->
+<!--                    <a href="{% url "images:list" %}">Images</a>-->
+<!--                </li>-->
+<!--                <li {% if section == "people" %}class="selected"{% endif %}>-->
+<!--                    <a href="{% url "user_list" %}">People</a>-->
+<!--                </li>-->
+<!--            </ul>-->
 
-            <span class="user">
-                Hello {{ request.user.first_name }},
-                <a href="{% url "logout" %}">Logout</a>
-            </span>
-        </div>
+<!--            <span class="user">-->
+<!--                Hello {{ request.user.first_name }},-->
+<!--                <a href="{% url "logout" %}">Logout</a>-->
+<!--            </span>-->
+<!--            -->
+<!--            -->
+<!--        </div>-->
+
+        <section class="nav-sec">
+            <div class="d-flex justify-content-between">
+             <div class="p-2 nav-icon-lg {% if section == "dashboard" %}mint-green{% else %}dark-black{% endif %}">
+                 <a class="nav-icon" href="{% url "dashboard" %}"><em class="fa fa-home"></em>
+                    <span>خانه</span>
+                 </a>
+             </div>
+
+             <div class="p-2 nav-icon-lg {% if section == "images" %}mint-green{% else %}clean-black{% endif %}">
+                 <a class="nav-icon" href="{% url "images:list" %}"><em class="fa fa-crosshairs"></em>
+                    <span>عکس ها</span>
+                 </a>
+             </div>
+
+             <div class="p-2 nav-icon-lg {% if section == "upload" %}mint-green{% else %}dark-black{% endif %}">
+                <a class="nav-icon" href="{% url "images:create_image" %}"><em class="fab fa-instagram"></em>
+                    <span>آپلود</span>
+                </a>
+             </div>
+
+             <div class="p-2 nav-icon-lg {% if section == "people" %}mint-green{% else %}dark-black{% endif %}">
+                <a class="nav-icon" href="{% url "user_list" %}"><em class="fa fa-align-left"></em>
+                    <span>اعضا</span>
+                </a>
+             </div>
+
+             <div class="p-2 nav-icon-lg {% if section == "profile" %}mint-green{% else %}dark-black{% endif %}">
+                <a class="nav-icon" href="{% url "edit" %}"><em class="fa fa-user"></em>
+                    <span>پروفایل</span>
+                </a>
+             </div>
+
+            </div>
+        </section>
 
         <div id="content">
             {% if messages %}

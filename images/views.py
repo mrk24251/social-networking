@@ -47,7 +47,7 @@ def image_create(request):
 
     return render(request,
                   'images/image/create.html',
-                  {'section': 'images',
+                  {'section': 'upload',
                    'form': form})
 
 @login_required
@@ -70,7 +70,7 @@ def image_create_image(request):
         form = ImageCreateImageForm(data=request.GET)
     return render(request,
                   'images/image/create_image.html',
-                  {'section': 'images',
+                  {'section': 'upload',
                    'form': form})
 
 def image_detail(request, id, slug):

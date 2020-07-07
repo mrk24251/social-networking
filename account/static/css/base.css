@@ -41,6 +41,9 @@ figure{
     height: 100%;
     color:#fff;
 }
+.container-fluid{
+    margin-top:50px;
+}
 @media screen and (min-width: 768px) and (max-width: 992px){
     .container1 {
         width: 750px;
@@ -67,6 +70,7 @@ figure{
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
+    margin-top:50px;
 }
 .banner-content{
     display: flex;
@@ -1857,3 +1861,175 @@ textarea{
     text-align:center;
     margin:auto;
 }
+
+/* ==========================================================================
+   Navbar Second Styles
+   ========================================================================== */
+.justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.nav-sec {
+  margin: 0px 0px 0px 0px;
+  height: 150px;
+  border-top: 1px solid rgba(90, 90, 90, 0.12);
+  background-color: grey;
+  box-shadow: 0 -5px 25px 0 rgba(123, 123, 123, 0.15);
+  color: #90a4ae;
+}
+.nav-sec a:hover{
+  color: #f4f4f4 !important;
+}
+
+.fh {
+  height: 200% !important;
+}
+
+.nav-icon {
+  display: block;
+  margin-top: 30px;
+  padding: 10px 6px 10px 6px;
+  border-bottom: 2px solid transparent;
+  font-size: 2rem;
+  text-align: center;
+  color: #fff !important;
+  height: 100%;
+  line-height: 1;
+  text-decoration: none !important;
+  flex-basis: 0;
+  flex-grow: 1;
+  color: #90a4ae;
+}
+.nav-icon span{
+  font-family: 'Nastaliq', serif;
+  font-size: 18px !important;
+  display: block;
+}
+
+.nav-icon em {
+  padding: 0px 0px 10px 0px;
+  font-size: 30px;
+}
+
+.nav-icon-lg {
+  height: 150px;
+  width: 270px !important;
+}
+
+.nav-icon-lg-new {
+  height: 150px;
+  width: 317px !important;
+}
+
+.clean-black {
+  background-color: #545654;
+}
+
+.dark-black {
+  background-color: #4e514e;
+}
+
+.mint-green {
+  background-color: #0fc19e;
+}
+
+/* ==========================================================================
+   Navbar Second Styles
+   ========================================================================== */
+.justify-content-between {
+    -ms-flex-pack: justify !important;
+    justify-content: space-between !important;
+}
+.d-flex {
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+.nav-sec {
+  margin: 0px 0px 0px 0px;
+  height: 150px;
+  border-top: 1px solid rgba(90, 90, 90, 0.12);
+  background-color: grey;
+  box-shadow: 0 -5px 25px 0 rgba(123, 123, 123, 0.15);
+  color: #90a4ae;
+}
+.nav-sec a:hover{
+  color: #f4f4f4 !important;
+}
+
+.fh {
+  height: 200% !important;
+}
+
+.nav-icon {
+  display: block;
+  margin-top: 30px;
+  padding: 10px 6px 10px 6px;
+  border-bottom: 2px solid transparent;
+  font-size: 2rem;
+  text-align: center;
+  color: #fff !important;
+  height: 100%;
+  line-height: 1;
+  text-decoration: none !important;
+  flex-basis: 0;
+  flex-grow: 1;
+  color: #90a4ae;
+}
+.nav-icon span{
+  font-family: 'Nastaliq', serif;
+  font-size: 14px !important;
+  display: block;
+}
+
+.nav-icon em {
+  padding: 0px 0px 10px 0px;
+  font-size: 30px;
+}
+
+.nav-icon-lg {
+  height: 150px;
+  width: 270px !important;
+}
+
+.nav-icon-lg-new {
+  height: 150px;
+  width: 317px !important;
+}
+
+.clean-black {
+  background-color: #545654;
+}
+
+.dark-black {
+  background-color: #4e514e;
+}
+
+.mint-green {
+  background-color: #0fc19e;
+}
+
+@media(max-width:768px) {
+	.nav-sec {
+	  height: 100px;
+	}
+	.fh {
+	  height: 150% !important;
+	}
+	.nav-icon-lg {
+	  height: 100px !important;
+	}
+	.nav-icon span{
+	  font-family: 'Nastaliq', serif;
+	  font-size: 12px !important;
+	  display: block;
+	}
+	.nav-icon em {
+	  padding: 0px 0px 10px 0px;
+	  font-size: 20px;
+	}
+}
+
