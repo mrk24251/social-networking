@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 
-{% block title %}Edit your account{% endblock %}
+{% block title %}اصلاح پروفایل{% endblock %}
 
 {% block content %}
 <section class="profile">
@@ -65,14 +65,15 @@
 				   <small><span><input class="email_input" placeholder="example@example.com" type="email" name="email" value="{{user_form.instance.email}}" ></span></small>
 			   </div><!--/ media -->
 			</div>
+
 			  <div class="col-lg-3">
 			   <div class="follow-box">
 			    {% csrf_token %}
     			<input id="profile_button" class="save kafe-btn kafe-btn-mint profile_button" type="submit" value="ذخیره تغییرات">
-			   </div><!--/ dropdown -->
-			</div>
-
-          </div><!--/ details-box -->
+				 </div><!--/ dropdown -->
+					<a class="save kafe-btn kafe-btn-mint profile_button password_change" href="{% url "password_change" %}">تغییر رمز عبور</a>
+				</div>
+			</div><!--/ details-box -->
 
 		</div>
 	   </div>
