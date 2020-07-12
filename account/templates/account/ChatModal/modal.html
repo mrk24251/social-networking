@@ -28,8 +28,8 @@
 			            <a class="modal-comment" href="#"><i class="fa fa-comments"></i></a><span class="modal-two"> 786,286</span> </li>
 			            <li>
                     <span class="thumb-xs">
-                      {% if user.profile.photo %}
-                        <img class="img-responsive img-circle" src="{{user.profile.photo.url}}" alt="...">
+                      {% if request.user.profile.photo %}
+                        <img class="img-responsive img-circle" src="{{request.user.profile.photo.url}}" alt="...">
                       {% else %}
                         <img class="img-responsive img-circle" src="/static/img/person.jpg" alt="...">
                       {% endif %}

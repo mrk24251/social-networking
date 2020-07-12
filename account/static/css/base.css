@@ -858,6 +858,9 @@ img.user-detail {
 .dropdown-menu.show{
     transform: translate3d(5px, 32px, 0px) !important;
 }
+#dropdown-menu.show{
+    transform: translate3d(-30px, -12px, 0px) !important;
+}
 #input_search_query1{
     float:right !important;
     background: #f4f4f4;
@@ -1538,7 +1541,7 @@ textarea{
 }
 .navbar-brand {
     font-family: 'Nastaliq', serif;
-    font-size: 32px;
+    font-size: 20px;
     color: #474B59 !important;
     -webkit-transition-duration: 0;
     transition-duration: 0;
@@ -1560,14 +1563,15 @@ a.navbar-brand:hover {
     background-color: transparent;
 }
 .navbar-default .navbar-nav>li>a {
-    padding: 15px 10px;
+    padding: 0px 10px;
     line-height: 25px;
 }
 .navbar-default .navbar-nav li a{
+    direction: rtl;
     text-decoration: none;
     font-family: 'Nastaliq', serif;
     color: #858686;
-    font-size: 14px;
+    font-size: 19px;
     text-transform: uppercase;
     border-radius: 4px;
     margin-right: 2px;
@@ -1578,7 +1582,7 @@ a.navbar-brand:hover {
     color: #0fc19e !important;
 }
 .navbar-default .navbar-nav li i{
-    padding: 15px 2px;
+    padding: 0px 2px;
     color: #858686;
     font-size: 14px;
     line-height: 25px;
@@ -1687,11 +1691,21 @@ a.navbar-brand:hover {
   color: #88898a;
   font-weight: 700;
 }
+.navbar-nav .dropdown-menu {
+    position: absolute;
+}
 .nav {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
     display: block;
+}
+.ad_icon{
+    width: 32px;
+    height: 32px;
+}
+.navbar>.container-fluid{
+    margin-top:0px !important;
 }
 .nav-pills>li {
     float: left;
@@ -2259,6 +2273,11 @@ a.navbar-brand:hover {
 	  padding: 0px 0px 10px 0px;
 	  font-size: 20px;
 	}
+}
+
+.not-found-image-search{
+    text-align: center;
+    margin: auto;
 }
 
 .error_change_password{

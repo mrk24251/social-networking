@@ -10,30 +10,30 @@
 	   <div class="row">
 	    <div class="col-lg-3">
          {% for image in images %}
-         <a href="#">
-             <div class="storybox" style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('{{image.image.url}}') no-repeat;
-                      background-size: cover;
-                          background-position: center center;
-                          -webkit-background-size: cover;
-                          -moz-background-size: cover;
-                          -o-background-size: cover;">
-                  <div class="story-body text-center">
-                  {% if image.user.profile.photo %}
-                    {% with ph=image.user.profile.photo %}
-                        <a href="{{ user.get_absolute_url }}"><img class="img-circle" src="{{ph.url}}" alt="Image"></a>
-                    {% endwith %}
-                  {% else %}
-                    <a href="#"><img class="img-circle" src="/static/img/person.jpg" alt="Image"></a>
-                  {% endif %}
-                  {% if image.user.profile.first_name %}
-                    <h4>{{image.user.profile.first_name}}</h4>
-                  {% else %}
-                    <h4>ناشناس</h4>
-                  {% endif %}
-                   <p>{{image.created|timesince}} ago</p>
-                  </div>
-             </div>
-         </a>
+					 <a href="{{ image.get_absolute_url }}">
+							 <div class="storybox" style="background: linear-gradient( rgba(34,34,34,0.78), rgba(34,34,34,0.78)), url('{{image.image.url}}') no-repeat;
+												background-size: cover;
+														background-position: center center;
+														-webkit-background-size: cover;
+														-moz-background-size: cover;
+														-o-background-size: cover;">
+										<div class="story-body text-center">
+										{% if image.user.profile.photo %}
+											{% with ph=image.user.profile.photo %}
+													<img class="img-circle" src="{{ph.url}}" alt="Image">
+											{% endwith %}
+										{% else %}
+											<img class="img-circle" src="/static/img/person.jpg" alt="Image">
+										{% endif %}
+										{% if image.user.profile.first_name %}
+											<h4>{{image.user.profile.first_name}}</h4>
+										{% else %}
+											<h4>ناشناس</h4>
+										{% endif %}
+										 <p>{{image.created|timesince}} ago</p>
+										</div>
+							 </div>
+					 </a>
          {% endfor %}
 
         <div class="trending-box hidden-xs hidden-md">
@@ -181,44 +181,45 @@ $( document ).ajaxStop(function() {
 				);
 			$( "#comment_textarea_id" ).val('');
 
-});
-
-$(".user_photo").on('click',function(e){
-	var ddd=$(this);
-	var slugg=ddd.data('slug')
-	localStorage.setItem("slug", slugg);
-	var idd=ddd.data('id')
-	localStorage.setItem("id", idd);
-	$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
-		$( ".img-comment-list" ).empty();
-		$('#comment-list-modal').append(data);
 	});
-	var element = $(".img-responsive-big");
-<!--		filters=localStorage.getItem("filters");-->
-	$(".img-responsive-big").attr("src", $(this).data('url'));
-	$(".modal-one").text($(this).data('like'));
-	$(".modal-two").text($(this).data('comment'));
-	var filters = $(".img-responsive-big").attr('class').split(' ').pop();
-	console.log('filters');
-	element.removeClass(filters);
-	var filter=$(this).data('filter');
-	element.addClass(filter);
-	console.log('filter',filter);
-});
 
-function updateComment(){
-	var idd1=localStorage.getItem("id", idd);
-	var slugg1=localStorage.getItem("slug", slugg);
-	console.log('slugg1',slugg1)
-	console.log('idd1',idd1)
 
-	$.get("/images/detail/"+ idd1 + "/" + slugg1 + "/", function(data) {
-		$( ".img-comment-list" ).empty();
-		$('#comment-list-modal').append(data);
+	$(".user_photo").on('click',function(e){
+		var ddd=$(this);
+		var slugg=ddd.data('slug')
+		localStorage.setItem("slug", slugg);
+		var idd=ddd.data('id')
+		localStorage.setItem("id", idd);
+		$.get("/images/detail/"+ idd + "/" + slugg + "/", function(data) {
+			$( ".img-comment-list" ).empty();
+			$('#comment-list-modal').append(data);
+		});
+		var element = $(".img-responsive-big");
+	<!--		filters=localStorage.getItem("filters");-->
+		$(".img-responsive-big").attr("src", $(this).data('url'));
+		$(".modal-one").text($(this).data('like'));
+		$(".modal-two").text($(this).data('comment'));
+		var filters = $(".img-responsive-big").attr('class').split(' ').pop();
+		console.log('filters');
+		element.removeClass(filters);
+		var filter=$(this).data('filter');
+		element.addClass(filter);
+		console.log('filter',filter);
 	});
-}
 
-	})
+	function updateComment(){
+		var idd1=localStorage.getItem("id", idd);
+		var slugg1=localStorage.getItem("slug", slugg);
+		console.log('slugg1',slugg1)
+		console.log('idd1',idd1)
+
+		$.get("/images/detail/"+ idd1 + "/" + slugg1 + "/", function(data) {
+			$( ".img-comment-list" ).empty();
+			$('#comment-list-modal').append(data);
+		});
+	}
+
+})
 
 
 	$('#building').click(function(e){
@@ -236,6 +237,7 @@ function updateComment(){
 			$( "#comment_textarea_id" ).val('');
 
 });
+
 $(".user_photo").on('click',function(){
 	var ddd=$(this);
 	var slugg=ddd.data('slug')
@@ -246,10 +248,6 @@ $(".user_photo").on('click',function(){
 		$( ".img-comment-list" ).empty();
 		$('#comment-list-modal').append(data);
 	});
-	setInterval(function(){
-		updateComment()
-	}, 500);
-
 	var element = $(".img-responsive-big");
 <!--		filters=localStorage.getItem("filters");-->
 	$(".img-responsive-big").attr("src", $(this).data('url'));
@@ -263,5 +261,9 @@ $(".user_photo").on('click',function(){
 	element.addClass(filter);
 	console.log('filter',filter);
 });
+
+setInterval(function(){
+	updateComment()
+}, 500);
 
 {% endblock %}

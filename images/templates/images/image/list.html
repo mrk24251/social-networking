@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load thumbnail %}
 
-{% block title %}بارگزاری موفق عکس{% endblock %}
+{% block title %}عکس ها{% endblock %}
 
 {% block content %}
     <section class="newsfeed">
@@ -39,7 +39,7 @@
 					<div class="author-post text-center">
 				 	{% if image.user.profile.photo %}
             {% with ph=image.user.profile.photo %}
-								<a href="{{ user.get_absolute_url }}"><img class="img-fluid rounded-circle" src="{{ph.url}}" alt="Image"></a>
+								<a href="{{ image.user.get_absolute_url }}"><img class="img-fluid rounded-circle" src="{{ph.url}}" alt="Image"></a>
             {% endwith %}
           {% else %}
 						<a href="#"><img class="img-fluid rounded-circle" src="/static/img/person.jpg" alt="Image"></a>
