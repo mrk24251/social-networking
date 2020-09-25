@@ -48,7 +48,11 @@
 		                            </div>
 
 		                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <span class="avatar w-32"><img src="{{request.user.profile.photo.url}}" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+		                                {% if request.user.profile.photo %}
+                                        <span class="avatar w-32"><img src="{{request.user.profile.photo.url}}" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+                                    {% else %}
+                                        <span class="avatar w-32"><img src="/static/img/person.jpg" class="img-resonsive img-circle" width="25" height="25" alt="..."></span>
+                                    {% endif %}
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span class="hidden-xs">
                                         &nbsp;
