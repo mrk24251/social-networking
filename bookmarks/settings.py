@@ -90,11 +90,17 @@ WSGI_APPLICATION = 'bookmarks.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'social',
-        'USER': 'social',
-        'PASSWORD': 'moreka75',
+        'NAME': 'd4qe3u5blhrbam',
+        'USER': 'exausuvjcqmvse',
+        'PASSWORD': '712ff4460c544145b4cabc9b6cc78822eacba4b0670e2b660a173b0be8839e2e',
+        'HOST': 'ec2-52-200-82-50.compute-1.amazonaws.com',
+        'PORT': '5432'
     }
 }
+
+ADMINS = (
+    ('Mohammadreza Karami', 'mohammadreza.karami22@yahoo.com'),
+)
 
 
 # Password validation
