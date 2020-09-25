@@ -97,6 +97,9 @@ target/
 # Jupyter Notebook
 .ipynb_checkpoints
 
+#redis
+redis-stable/
+
 # IPython
 profile_default/
 ipython_config.py
