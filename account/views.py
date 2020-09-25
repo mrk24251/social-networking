@@ -22,7 +22,8 @@ from django.db.models import Count
 
 r = redis.StrictRedis(host=settings.REDIS_HOST,
     port=settings.REDIS_PORT,
-    db=settings.REDIS_DB)
+    password=settings.REDIS_PASSWORD)
+
 def user_login(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)

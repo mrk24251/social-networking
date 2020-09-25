@@ -140,9 +140,13 @@ AUTHENTICATION_BACKENDS = [
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '915019433080-sn5o3ue35inhvpgfoq572r7ufgaigka0.apps.googleusercontent.com' # Google Consumer Key
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ySLD3I7esB-SjOJaQzqtat_Q' # Google Consumer Secret
 
-REDIS_HOST = 'localhost'
-REDIS_PORT = 6379
-REDIS_DB = 0
+
+
+REDIS_HOST = 'ec2-35-170-115-149.compute-1.amazonaws.com'
+REDIS_PORT =  28839
+REDIS_PASSWORD = 'pf6cb738d86d714c2a9422e47c4dc81f3d1de843c9e100188f974c11cda66b8e8'
+REDIS_USER = 'h'
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 

@@ -17,7 +17,7 @@ from django.contrib.postgres.search import SearchVector,SearchQuery,SearchRank
 
 r = redis.StrictRedis(host=settings.REDIS_HOST,
     port=settings.REDIS_PORT,
-    db=settings.REDIS_DB)
+    password=settings.REDIS_PASSWORD)
 
 @login_required
 def image_create(request):
