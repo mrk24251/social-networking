@@ -135,8 +135,8 @@ AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
 ]
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '131429952706-rhf4f56rdm28rvsmgg0asrp1ddv699lu.apps.googleusercontent.com' # Google Consumer Key
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '7lnxjz4-JGEL9AiQ4XGRowxW' # Google Consumer Secret
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '915019433080-sn5o3ue35inhvpgfoq572r7ufgaigka0.apps.googleusercontent.com' # Google Consumer Key
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'ySLD3I7esB-SjOJaQzqtat_Q' # Google Consumer Secret
 
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
