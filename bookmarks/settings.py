@@ -39,12 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     "sslserver",
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
     'social_django',
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
     'sorl.thumbnail',
     'django.contrib.postgres',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -167,6 +169,13 @@ LOGIN_REDIRECT_URL = 'dashboard'
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dt0x3ff8y',
+    'API_KEY': '842463339847471',
+    'API_SECRET': 'd4CUuUKhO4JSVfy9DA41a4KhGGw',
+}
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
