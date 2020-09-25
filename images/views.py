@@ -34,7 +34,7 @@ def image_create(request):
             new_item.save()
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
-            return redirect('/account/edit/')
+            return redirect('/edit/')
     else:
         # build form with data provided by the bookmarklet via GET
         form = ImageCreateForm(data=request.GET)
@@ -64,7 +64,7 @@ def image_create_image(request):
             new_item.save()
             messages.success(request, 'Image added successfully')
             # redirect to new created item detail view
-            return redirect('/account/edit/')
+            return redirect('/edit/')
     else:
         # build form with data provided by the bookmarklet via GET
         form = ImageCreateImageForm(data=request.GET)
