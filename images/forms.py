@@ -29,8 +29,8 @@ class ImageCreateForm(forms.ModelForm):
                                     image_url.rsplit('.', 1)[1].lower())
 
         response = request.urlopen(image_url)
-        image.image.save (slugify(image.title),
-                         ContentFile(response.read(),max_length=400),
+        image.image.save (image.title,
+                         ContentFile(response.read()),
                          save=False)
 
         if commit:
