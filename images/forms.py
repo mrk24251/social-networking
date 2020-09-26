@@ -10,8 +10,6 @@ class ImageCreateForm(forms.ModelForm):
         model = Image
         fields = ('title', 'url', 'description', 'filter')
 
-
-
     def clean_url(self):
         url = self.cleaned_data['url']
         valid_extensions = ['jpg', 'jpeg', 'png']
@@ -31,7 +29,7 @@ class ImageCreateForm(forms.ModelForm):
                                     image_url.rsplit('.', 1)[1].lower())
 
         response = request.urlopen(image_url)
-        image.image.save (image_name,
+        image.image.save (slugify(image.title),
                          ContentFile (response.read()),
                          save=False)
 
