@@ -30,7 +30,7 @@ class ImageCreateForm(forms.ModelForm):
 
         response = request.urlopen(image_url)
         image.image.save (slugify(image.title),
-                         ContentFile (response.read()),
+                         ContentFile(response.read(),max_length=400),
                          save=False)
 
         if commit:
