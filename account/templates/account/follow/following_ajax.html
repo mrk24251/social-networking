@@ -45,7 +45,11 @@
      </div><!--/ name-box -->
         <span class="ali">
             <a href="#" data-id="{{ user.id }}" data-action="{% if request.user in user.following.all %}un{% endif %}follow" class="follow-button kafe-btn kafe-btn-mint-small follow" id="{{user.username}}">
-              Unfollow
+                {% if request.user not in user.following.all %}
+                    Follow
+                {% else %}
+                    Unfollow
+                {% endif %}
             </a>
         </span>
     </div><!--/ followers-body -->
