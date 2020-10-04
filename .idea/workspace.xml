@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e18245b4-07e5-4df2-a6bf-91085252d646" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/images/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/images/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmarks/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bookmarks/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,10 +63,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601046914027">
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl" timestamp="1601150420620">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
-    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1601046914027" />
+    <state x="779" y="311" width="424" height="491" key="FileChooserDialogImpl/72.27.1848.1053@72.27.1848.1053" timestamp="1601150420620" />
     <state x="170" y="97" width="1649" height="853" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1595871564888">
       <screen x="72" y="27" width="1848" height="1053" />
     </state>
